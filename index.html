@@ -135,7 +135,7 @@
   }
   .hero-bg{
     position: absolute; inset: 0; z-index: -2;
-    background-size: cover; background-position: center 25%;
+    background-size: cover; background-position: center 62%;
   }
   .hero-bg::after{
     content:''; position:absolute; inset:0;
@@ -213,6 +213,43 @@
   }
   .masonry figure:hover img{ filter: grayscale(0%); transform: scale(1.045); }
 
+  /* ============ PLANES ============ */
+  .planes{ background: var(--stone); }
+  .planes .head{ max-width: 620px; margin-bottom: 48px; }
+  .planes h2{ font-size: clamp(28px,4.4vw,44px); }
+  .plan-grid{ display:grid; gap: 24px; margin-bottom: 44px; }
+  @media (min-width: 860px){ .plan-grid{ grid-template-columns: repeat(3,1fr); } }
+  .plan-card{ background: var(--ivory); border-radius: 6px; padding: 32px 28px; position: relative; }
+  .plan-card.featured{ border: 2px solid var(--terracotta); }
+  .plan-badge{ position:absolute; top:-13px; right:24px; background: var(--terracotta); color: var(--ivory); font-family: var(--ff-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; padding: 5px 12px; border-radius: 20px; }
+  .plan-card h3{ font-size: 24px; margin-bottom: 18px; }
+  .plan-card ul{ list-style:none; }
+  .plan-card li{ font-size: 14px; color: var(--gray); padding: 9px 0; border-top: 1px solid rgba(26,22,19,0.08); }
+  .plan-card li:first-child{ border-top:none; }
+  .planes .foot{ text-align:center; max-width: 520px; margin: 0 auto; }
+  .planes .foot p{ color: var(--gray); margin-bottom:20px; font-size:15px; }
+
+  /* ============ TESTIMONIOS ============ */
+  .testimonios .head{ max-width:620px; margin-bottom:48px; }
+  .testi-grid{ display:grid; gap: 24px; }
+  @media (min-width: 760px){ .testi-grid{ grid-template-columns: 1fr 1fr; } }
+  .testi-card{ background: var(--stone); border-radius:6px; padding:32px; }
+  .testi-card .mark{ font-family: var(--ff-display); font-size:48px; color: var(--terracotta); line-height:0.6; margin-bottom:14px; display:block; }
+  .testi-card p{ font-size:16px; color:#3a332c; margin-bottom:18px; }
+  .testi-card .who{ font-family: var(--ff-display); font-style:italic; color: var(--ink); font-size:17px; }
+
+  /* ============ FAQ ============ */
+  .faq{ background: var(--stone); }
+  .faq .head{ max-width:620px; margin-bottom:32px; }
+  .faq-item{ border-top:1px solid rgba(26,22,19,0.14); }
+  .faq-item:last-child{ border-bottom:1px solid rgba(26,22,19,0.14); }
+  .faq-item summary{ cursor:pointer; list-style:none; padding: 20px 2px; font-family: var(--ff-display); font-size:18px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{ content:'+'; font-size:26px; color: var(--terracotta); flex-shrink:0; transition: transform .3s ease; line-height: 1; }
+  .faq-item[open] summary::after{ transform: rotate(45deg); }
+  .faq-item p{ padding: 0 2px 22px; color: var(--gray); font-size:15px; max-width:64ch; }
+
+
   /* ============ SOBRE ============ */
   .sobre .grid{ display:grid; gap: 40px; align-items:center; }
   @media (min-width: 860px){ .sobre .grid{ grid-template-columns: 320px 1fr; gap: 64px; } }
@@ -225,7 +262,9 @@
   .cta-final{ background: var(--ink); color: var(--ivory); text-align:center; }
   .cta-final h2{ font-size: clamp(28px, 5vw, 48px); max-width: 640px; margin: 0 auto 26px; }
   .cta-final .btn{ margin-top: 4px; }
-  /* [PLACEHOLDER] Si tienes urgencia real (ej. "Solo tomamos 3 bodas más este año"), agrégala aquí como párrafo dentro de .cta-final en el HTML. No la inventamos por ti. */
+  .cta-final .urgency{ font-family: var(--ff-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color: var(--terracotta); margin-bottom: 26px; }
+  .cta-final .alt-link{ margin-top: 8px; }
+  .cta-final .alt-link a{ color: var(--terracotta); text-decoration: underline; }
 
   /* ============ FOOTER ============ */
   footer{
@@ -356,6 +395,106 @@
   </div>
 </section>
 
+<!-- ================= PLANES ================= -->
+<section class="planes">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Paquetes</span>
+      <h2>Tres formas de contar tu historia.</h2>
+    </div>
+    <div class="plan-grid reveal">
+      <div class="plan-card featured">
+        <span class="plan-badge">Más elegido</span>
+        <h3>Amore</h3>
+        <ul>
+          <li>Cobertura de hasta 12 horas continuas</li>
+          <li>Película cinemática extensa + teaser para redes</li>
+          <li>Tomas aéreas y sesión pre-boda incluidas</li>
+          <li>Book impreso con las fotos que ustedes elijan</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h3>Ulalá</h3>
+        <ul>
+          <li>Cobertura de hasta 9 horas</li>
+          <li>Película con enfoque editorial</li>
+          <li>Teaser cinemático para redes</li>
+          <li>Book impreso incluido</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h3>Cielito</h3>
+        <ul>
+          <li>Cobertura de hasta 8 horas</li>
+          <li>Galería digital con cientos de fotos</li>
+          <li>Teaser cinemático para redes</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot reveal">
+      <p>Cada paquete se puede ajustar a lo que ustedes necesiten. Escríbenos y te contamos los valores y qué incluye cada uno con detalle.</p>
+      <a class="btn" href="https://wa.me/593987638921?text=Hola%20MATU%2C%20quiero%20conocer%20los%20paquetes%20y%20valores%20para%20mi%20boda" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.05 2h-.01zm5.83 14.14c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.02.24-3.4-.71-2.88-1.15-4.73-4.07-4.87-4.26-.14-.19-1.17-1.55-1.17-2.96s.72-2.1.98-2.39c.25-.28.55-.35.74-.35.19 0 .37 0 .53.01.17.01.4-.06.62.48.24.58.81 1.99.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.56.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.63-.14.26.09 1.65.78 1.94.92.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
+        Pregunta por los paquetes
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section class="testimonios">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Lo que dicen</span>
+      <h2>Mira cómo se sintieron.</h2>
+    </div>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <span class="mark">"</span>
+        <p>Hola Andrésito, gracias, gracias, gracias por las fotos, que bestia, nos hemos emocionado y también reído con algunas. Marlon me dice que tienes un talento enorme y pues estoy de acuerdo — ya voy viendo dos veces las fotos porque nos encanta.</p>
+        <span class="who">— Tefy Monsalve</span>
+      </div>
+      <div class="testi-card">
+        <span class="mark">"</span>
+        <p>MATU, queremos agradecerte por todo. Por la confianza brindada desde el día uno y tu linda vibra — estoy segura que voy a llorar mucho con tus fotos, pero de alegría y emoción.</p>
+        <span class="who">— Vane Fiallos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Lo que más nos preguntan.</h2>
+    </div>
+    <div class="reveal">
+      <details class="faq-item">
+        <summary>¿Nos reunimos antes de la boda?</summary>
+        <p>Sí, hacemos una reunión presencial o virtual para conocernos, planear la cobertura y asegurarnos de captar lo que más les importa a ustedes.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Las fotos son espontáneas o dirigidas?</summary>
+        <p>Las dos cosas. Durante el evento priorizamos lo natural y documental, y solo dirigimos cuando hace falta — en fotos de grupo, retratos, y en la sesión de novios.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué pasa si llueve o algo se retrasa?</summary>
+        <p>Nos adaptamos al ritmo real del evento. La cobertura es flexible y estamos preparados para cambios de clima o de horario.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Van solos o con un equipo?</summary>
+        <p>Vamos dos personas — una para fotografía, otra para video. En coberturas grandes sumamos un asistente o segundo fotógrafo para no perder ningún detalle.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Podemos ver trabajos anteriores completos?</summary>
+        <p>Claro. Si quieres, te compartimos galerías privadas de bodas reales para que veas nuestro estilo de principio a fin.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ================= SOBRE ================= -->
 <section class="sobre">
   <div class="wrap">
@@ -365,8 +504,8 @@
       </div>
       <div class="reveal">
         <span class="eyebrow">Sobre MATU Films</span>
-        <h2>Dos personas, un mismo criterio.</h2>
-        <p>Soy MATU. Fotografío bodas en Cuenca desde hace más de 3 años, y lo hago con la misma pregunta en la cabeza siempre: ¿esta foto se va a sentir real dentro de veinte años, o se va a ver como cualquier otra?</p>
+        <h2>Hola, soy Andrés.</h2>
+        <p>Fotografío bodas en Cuenca desde hace más de 3 años, y sigo pensando que tengo el mejor trabajo del mundo — no se siente como trabajo. Cada pareja frente a mi cámara me deja algo, y mi manera de devolverlo es con fotos y video que se sientan como ustedes, no como una plantilla que le aplicamos a todos.</p>
         <p>Trabajo junto a mi pareja — video, diseño y toda la comunicación con ustedes pasan por sus manos, así que desde el primer mensaje hasta la entrega final, siempre saben quién está del otro lado.</p>
         <a class="insta" href="https://www.instagram.com/matufilms.bodas" target="_blank" rel="noopener">@matufilms.bodas →</a>
       </div>
@@ -378,11 +517,13 @@
 <section class="cta-final">
   <div class="wrap">
     <h2 class="reveal">¿Empezamos a hablar de tu boda?</h2>
+    <p class="urgency reveal">Nuestra agenda para bodas es limitada</p>
     <a class="btn reveal" href="https://wa.me/593987638921?text=Hola%20MATU%2C%20quiero%20saber%20m%C3%A1s%20sobre%20fotograf%C3%ADa%20de%20bodas" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.05 2h-.01zm5.83 14.14c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.02.24-3.4-.71-2.88-1.15-4.73-4.07-4.87-4.26-.14-.19-1.17-1.55-1.17-2.96s.72-2.1.98-2.39c.25-.28.55-.35.74-.35.19 0 .37 0 .53.01.17.01.4-.06.62.48.24.58.81 1.99.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.56.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.63-.14.26.09 1.65.78 1.94.92.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
       Escríbenos por WhatsApp
     </a>
-    <p class="microcopy">Sin compromiso. Respondemos en menos de 24h.</p>
+    <p class="microcopy reveal">Sin compromiso. Respondemos en menos de 24h.</p>
+    <p class="microcopy alt-link reveal"><a href="https://calendly.com/matufilms94/30min" target="_blank" rel="noopener">O agenda aquí una videollamada gratuita de 30 min →</a></p>
   </div>
 </section>
 
