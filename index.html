@@ -117,6 +117,13 @@
   .reveal{ opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.is-visible{ opacity: 1; transform: none; }
 
+  /* ============ PHOTO ACCENTS (collage editorial) ============ */
+  .top-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap; }
+  .top-row .head{ margin-bottom:0; }
+  .top-photo-wrap{ flex:0 0 auto; }
+  .top-photo{ border-radius:4px; box-shadow:0 20px 44px rgba(0,0,0,0.22); display:block; }
+  @media (max-width:760px){ .top-photo-wrap{ display:none; } }
+
   /* ============ TOP BAR ============ */
   .topbar{
     position: fixed; top:0; left:0; right:0; z-index: 50;
@@ -197,7 +204,9 @@
   .problema .imgwrap:hover img{ transform: scale(1.06); }
 
   /* ============ PROCESO ============ */
-  .proceso .head{ max-width: 620px; margin-bottom: 56px; }
+  .proceso .top-row{ margin-bottom: 56px; }
+  .proceso-photo{ width: 180px; transform: rotate(-4deg); }
+  .proceso .head{ max-width: 620px; }
   .proceso h2{ font-size: clamp(28px, 4.4vw, 44px); }
   .steps{ display:grid; gap: 32px; margin-bottom: 64px; }
   @media (min-width: 860px){ .steps{ grid-template-columns: repeat(3, 1fr); gap: 40px; } }
@@ -221,6 +230,15 @@
   .promesa h2{ font-size: clamp(28px, 4.4vw, 44px); margin-bottom: 22px; }
   .promesa p{ font-size: 17px; color: #4a2a30; margin-bottom: 16px; }
   .promesa strong{ color: var(--ink); font-weight: 600; }
+  .promesa-photo-1{
+    position: absolute; right: 6%; top: 10%; width: 240px; z-index: 1;
+    border-radius: 4px; box-shadow: 0 24px 50px rgba(0,0,0,0.28); transform: rotate(3deg);
+  }
+  .promesa-photo-2{
+    position: absolute; right: 1%; top: 54%; width: 150px; z-index: 1;
+    border-radius: 4px; box-shadow: 0 18px 40px rgba(0,0,0,0.28); transform: rotate(-6deg);
+  }
+  @media (max-width: 960px){ .promesa-photo-1, .promesa-photo-2{ display:none; } }
   .monogram{
     position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
     font-family: var(--ff-display); font-size: min(46vw, 480px); font-weight: 500;
@@ -245,7 +263,9 @@
 
   /* ============ PLANES ============ */
   .planes{ background: var(--stone); }
-  .planes .head{ max-width: 620px; margin-bottom: 48px; }
+  .planes .top-row{ margin-bottom: 48px; }
+  .planes-photo{ width: 170px; transform: rotate(3deg); }
+  .planes .head{ max-width: 620px; }
   .planes h2{ font-size: clamp(28px,4.4vw,44px); }
   .plan-grid{ display:grid; gap: 24px; margin-bottom: 44px; }
   @media (min-width: 860px){ .plan-grid{ grid-template-columns: repeat(3,1fr); } }
@@ -260,7 +280,9 @@
   .planes .foot p{ color: var(--gray); margin-bottom:20px; font-size:15px; }
 
   /* ============ TESTIMONIOS ============ */
-  .testimonios .head{ max-width:620px; margin-bottom:48px; }
+  .testimonios .top-row{ margin-bottom: 48px; }
+  .testimonios-photo{ width: 150px; transform: rotate(-3deg); }
+  .testimonios .head{ max-width:620px; }
   .testi-grid{ display:grid; gap: 24px; }
   @media (min-width: 760px){ .testi-grid{ grid-template-columns: 1fr 1fr; } }
   .testi-card{ background: var(--stone); border-radius:6px; padding:32px; }
@@ -270,7 +292,9 @@
 
   /* ============ FAQ ============ */
   .faq{ background: var(--stone); }
-  .faq .head{ max-width:620px; margin-bottom:32px; }
+  .faq .top-row{ margin-bottom: 32px; }
+  .faq-photo{ width: 160px; transform: rotate(3deg); }
+  .faq .head{ max-width:620px; }
   .faq-item{ border-top:1px solid rgba(78,21,21,0.14); }
   .faq-item:last-child{ border-bottom:1px solid rgba(78,21,21,0.14); }
   .faq-item summary{ cursor:pointer; list-style:none; padding: 20px 2px; font-family: var(--ff-display); font-size:18px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
@@ -283,18 +307,29 @@
   /* ============ SOBRE ============ */
   .sobre .grid{ display:grid; gap: 40px; align-items:center; }
   @media (min-width: 860px){ .sobre .grid{ grid-template-columns: 320px 1fr; gap: 64px; } }
+  .sobre-photos{ position: relative; }
   .sobre .imgwrap{ border-radius: 3px; overflow:hidden; max-width: 320px; }
+  .sobre-accent{
+    position: absolute; right: -30px; bottom: -30px; width: 140px; z-index: 2;
+    border-radius: 4px; box-shadow: 0 16px 36px rgba(0,0,0,0.25); transform: rotate(6deg);
+  }
+  @media (max-width: 600px){ .sobre-accent{ display:none; } }
   .sobre h2{ font-size: clamp(26px,4vw,38px); margin-bottom: 18px; }
   .sobre p{ color: var(--gray); font-size: 16px; margin-bottom: 14px; max-width: 56ch; }
   .sobre .insta{ font-family: var(--ff-mono); font-size: 13px; color: var(--terracotta); display:inline-block; margin-top: 6px; }
 
   /* ============ CTA FINAL ============ */
-  .cta-final{ background: var(--ink); color: var(--ivory); text-align:center; }
+  .cta-final{ background: var(--ink); color: var(--ivory); text-align:center; position: relative; overflow: hidden; }
   .cta-final h2{ font-size: clamp(28px, 5vw, 48px); max-width: 640px; margin: 0 auto 26px; }
   .cta-final .btn{ margin-top: 4px; }
   .cta-final .urgency{ font-family: var(--ff-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color: var(--rose); margin-bottom: 26px; }
   .cta-final .alt-link{ margin-top: 8px; }
   .cta-final .alt-link a{ color: var(--rose); text-decoration: underline; }
+  .cta-photo{
+    position: absolute; left: 4%; bottom: -24px; width: 150px; z-index: 0; opacity: 0.95;
+    border-radius: 4px; box-shadow: 0 20px 44px rgba(0,0,0,0.4); transform: rotate(-6deg);
+  }
+  @media (max-width: 760px){ .cta-photo{ display:none; } }
 
   /* ============ FOOTER ============ */
   footer{
@@ -373,9 +408,14 @@
 <!-- ================= PROCESO ================= -->
 <section class="proceso">
   <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">Cómo trabajamos</span>
-      <h2>La sombra de los novios.</h2>
+    <div class="top-row reveal">
+      <div class="head">
+        <span class="eyebrow">Cómo trabajamos</span>
+        <h2>La sombra de los novios.</h2>
+      </div>
+      <div class="top-photo-wrap">
+        <img class="top-photo proceso-photo" src="images/proceso-accent.jpg" alt="Los novios caminando con su perro después de la ceremonia" loading="lazy" width="650" height="975">
+      </div>
     </div>
     <div class="steps">
       <div class="step reveal">
@@ -411,6 +451,8 @@
 <!-- ================= PROMESA ================= -->
 <section class="promesa">
   <span class="monogram">MF</span>
+  <img class="promesa-photo-1" src="images/promesa-accent.jpg" alt="Novios abrazados bajo un velo, en blanco y negro" loading="lazy" width="900" height="1483">
+  <img class="promesa-photo-2" src="images/promesa-accent-2.jpg" alt="Novios abrazados bailando de noche, en blanco y negro" loading="lazy" width="650" height="974">
   <div class="wrap">
     <div class="inner reveal">
       <span class="eyebrow">Lo que se llevan</span>
@@ -449,9 +491,14 @@
 <!-- ================= PLANES ================= -->
 <section class="planes">
   <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">Paquetes</span>
-      <h2>Tres formas de contar tu historia.</h2>
+    <div class="top-row reveal">
+      <div class="head">
+        <span class="eyebrow">Paquetes</span>
+        <h2>Tres formas de contar tu historia.</h2>
+      </div>
+      <div class="top-photo-wrap">
+        <img class="top-photo planes-photo" src="images/planes-accent.jpg" alt="Novios compartiendo el pastel de bodas al aire libre" loading="lazy" width="750" height="1125">
+      </div>
     </div>
     <div class="plan-grid reveal">
       <div class="plan-card featured">
@@ -495,9 +542,14 @@
 <!-- ================= TESTIMONIOS ================= -->
 <section class="testimonios">
   <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">Lo que dicen</span>
-      <h2>Mira cómo se sintieron.</h2>
+    <div class="top-row reveal">
+      <div class="head">
+        <span class="eyebrow">Lo que dicen</span>
+        <h2>Mira cómo se sintieron.</h2>
+      </div>
+      <div class="top-photo-wrap">
+        <img class="top-photo testimonios-photo" src="images/testimonios-accent.jpg" alt="Novia dibujando un corazón en el espejo mientras se prepara" loading="lazy" width="620" height="930">
+      </div>
     </div>
     <div class="testi-grid reveal">
       <div class="testi-card">
@@ -517,9 +569,14 @@
 <!-- ================= FAQ ================= -->
 <section class="faq">
   <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">Preguntas frecuentes</span>
-      <h2>Lo que más nos preguntan.</h2>
+    <div class="top-row reveal">
+      <div class="head">
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2>Lo que más nos preguntan.</h2>
+      </div>
+      <div class="top-photo-wrap">
+        <img class="top-photo faq-photo" src="images/faq-accent.jpg" alt="Vista aérea de una novia con velo largo bordado de flores" loading="lazy" width="700" height="1049">
+      </div>
     </div>
     <div class="reveal">
       <details class="faq-item">
@@ -550,8 +607,11 @@
 <section class="sobre">
   <div class="wrap">
     <div class="grid">
-      <div class="imgwrap reveal">
-        <img src="images/profile.jpg" alt="Retrato de MATU, fotógrafo de MatuFilms" loading="lazy" width="800" height="1208">
+      <div class="sobre-photos reveal">
+        <div class="imgwrap">
+          <img src="images/profile.jpg" alt="Retrato de MATU, fotógrafo de MatuFilms" loading="lazy" width="800" height="1208">
+        </div>
+        <img class="sobre-accent" src="images/sobre-accent.jpg" alt="Novia sonriendo mientras juega con su velo" loading="lazy" width="550" height="825">
       </div>
       <div class="reveal">
         <span class="eyebrow">Sobre MatuFilms</span>
@@ -566,6 +626,7 @@
 
 <!-- ================= CTA FINAL ================= -->
 <section class="cta-final">
+  <img class="cta-photo" src="images/cta-accent.jpg" alt="Novios besándose entre confeti, en blanco y negro" loading="lazy" width="800" height="1066">
   <div class="wrap">
     <h2 class="reveal">¿Empezamos a hablar de tu boda?</h2>
     <p class="urgency reveal">Nuestra agenda para bodas es limitada</p>
