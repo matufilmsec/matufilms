@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#4E1515">
+<meta name="theme-color" content="#29241E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Italianno&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -39,12 +39,12 @@
 <style>
   /* ============ TOKENS ============ */
   :root{
-    --ivory: #F4ECE0;
-    --ink: #4E1515;
-    --terracotta: #7A1E2E;
-    --rose: #D98B6E;
-    --stone: #EDE0D9;
-    --gray: #715A5C;
+    --ivory: #F2EDE2;
+    --ink: #29241E;
+    --terracotta: #786242;
+    --rose: #D9C9A8;
+    --stone: #EAE3D3;
+    --gray: #6B5F4E;
     --ff-display: 'Bodoni Moda', serif;
     --ff-script: 'Italianno', cursive;
     --ff-body: 'Archivo', sans-serif;
@@ -100,9 +100,9 @@
     border: none;
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    box-shadow: 0 4px 18px rgba(122,30,46,0.25);
+    box-shadow: 0 4px 18px rgba(120,98,66,0.25);
   }
-  .btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 24px rgba(122,30,46,0.35); }
+  .btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 24px rgba(120,98,66,0.35); }
   .btn:focus-visible{ outline: 3px solid var(--ink); outline-offset: 3px; }
   .btn svg{ width: 18px; height: 18px; flex-shrink: 0; }
 
@@ -140,9 +140,9 @@
     position: fixed; top:0; left:0; right:0; z-index: 50;
     display:flex; align-items:center; justify-content:space-between;
     padding: 18px 24px;
-    background: rgba(244,236,224,0.85);
+    background: rgba(242,237,226,0.85);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(78,21,21,0.08);
+    border-bottom: 1px solid rgba(41,36,30,0.08);
   }
   @media (min-width:768px){ .topbar{ padding: 22px 56px; } }
   .topbar .logo{ height: 30px; width: auto; display: block; }
@@ -163,11 +163,11 @@
   }
   .hero-bg::after{
     content:''; position:absolute; inset:0;
-    background: linear-gradient(180deg, rgba(78,21,21,0.18) 0%, rgba(78,21,21,0.12) 45%, rgba(78,21,21,0.58) 100%);
+    background: linear-gradient(180deg, rgba(41,36,30,0.18) 0%, rgba(41,36,30,0.12) 45%, rgba(41,36,30,0.58) 100%);
   }
   .hero-eyebrow{
     font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: rgba(244,236,224,0.85); text-shadow: 0 1px 10px rgba(0,0,0,0.4); margin-bottom: 28px;
+    color: rgba(242,237,226,0.85); text-shadow: 0 1px 10px rgba(0,0,0,0.4); margin-bottom: 28px;
   }
   .hero h1{
     font-size: clamp(32px, 6.4vw, 64px);
@@ -182,15 +182,15 @@
     max-width: 460px;
     font-size: 16px;
     margin: 26px 0 34px;
-    color: rgba(244,236,224,0.9);
+    color: rgba(242,237,226,0.9);
     text-shadow: 0 2px 16px rgba(0,0,0,0.45);
   }
-  .hero .microcopy{ color: rgba(244,236,224,0.72); text-shadow: 0 1px 10px rgba(0,0,0,0.4); }
+  .hero .microcopy{ color: rgba(242,237,226,0.72); text-shadow: 0 1px 10px rgba(0,0,0,0.4); }
 
   /* ============ MARQUEE ============ */
   .marquee{
     background: var(--ink); overflow: hidden; white-space: nowrap;
-    padding: 20px 0; border-top: 1px solid rgba(244,236,224,0.15); border-bottom: 1px solid rgba(244,236,224,0.15);
+    padding: 20px 0; border-top: 1px solid rgba(242,237,226,0.15); border-bottom: 1px solid rgba(242,237,226,0.15);
   }
   .marquee-track{
     display: inline-flex; animation: marquee-scroll 30s linear infinite;
@@ -212,7 +212,7 @@
     color: var(--stone);
     margin-bottom: 30px;
   }
-  .problema p.body{ color: rgba(244,236,224,0.8); font-size: 18px; max-width: 62ch; margin: 0 auto; }
+  .problema p.body{ color: rgba(242,237,226,0.8); font-size: 18px; max-width: 62ch; margin: 0 auto; }
 
   /* ============ FILMSTRIP (galería horizontal a sangre) ============ */
   .filmstrip-head{ text-align:center; max-width: 640px; margin: 0 auto 48px; }
@@ -224,7 +224,7 @@
   }
   @media (min-width:768px){ .filmstrip{ padding: 0 56px 16px; } }
   .filmstrip::-webkit-scrollbar{ height:5px; }
-  .filmstrip::-webkit-scrollbar-thumb{ background: rgba(78,21,21,0.25); border-radius:3px; }
+  .filmstrip::-webkit-scrollbar-thumb{ background: rgba(41,36,30,0.25); border-radius:3px; }
   .filmstrip img{
     height: 58vh; max-height: 540px; width:auto; flex-shrink:0; scroll-snap-align:start;
     border-radius:3px; filter:grayscale(55%) contrast(1.02); transition:filter .5s ease, transform .5s ease;
@@ -258,7 +258,7 @@
     position: relative; min-height: 560px; border-radius: 4px; overflow: hidden;
     background-size: cover; background-position: center;
   }
-  .values-cloud::after{ content:''; position:absolute; inset:0; background: rgba(78,21,21,0.56); }
+  .values-cloud::after{ content:''; position:absolute; inset:0; background: rgba(41,36,30,0.56); }
   .values-cloud-head{ position:absolute; top:56px; left:0; right:0; text-align:center; z-index:2; padding:0 24px; }
   .values-cloud-head .eyebrow{ color: var(--rose); text-align:center; }
   .values-cloud-head h2{ color: var(--ivory); font-size: clamp(24px,4vw,36px); font-style: italic; max-width: 560px; margin: 0 auto; }
@@ -299,7 +299,7 @@
   .monogram{
     position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
     font-family: var(--ff-display); font-size: min(46vw, 480px); font-weight: 500;
-    color: transparent; -webkit-text-stroke: 1px rgba(78,21,21,0.13); line-height: 1;
+    color: transparent; -webkit-text-stroke: 1px rgba(41,36,30,0.13); line-height: 1;
     pointer-events: none; user-select: none; z-index: 0;
   }
 
@@ -316,7 +316,7 @@
   .plan-badge{ position:absolute; top:-13px; right:24px; background: var(--terracotta); color: var(--ivory); font-family: var(--ff-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; padding: 5px 12px; border-radius: 20px; }
   .plan-card h3{ font-size: 25px; margin-bottom: 18px; font-style: italic; }
   .plan-card ul{ list-style:none; }
-  .plan-card li{ font-size: 14px; color: var(--gray); padding: 9px 0; border-top: 1px solid rgba(78,21,21,0.08); }
+  .plan-card li{ font-size: 14px; color: var(--gray); padding: 9px 0; border-top: 1px solid rgba(41,36,30,0.08); }
   .plan-card li:first-child{ border-top:none; }
   .planes .foot{ text-align:center; max-width: 520px; margin: 0 auto; }
   .planes .foot p{ color: var(--gray); margin-bottom:20px; font-size:15px; }
@@ -342,8 +342,8 @@
   .faq-photo{ width: 170px; transform: rotate(3deg); }
   .faq .head{ max-width:680px; }
   .faq h2{ font-size: clamp(30px,5vw,52px); font-style: italic; }
-  .faq-item{ border-top:1px solid rgba(78,21,21,0.14); }
-  .faq-item:last-child{ border-bottom:1px solid rgba(78,21,21,0.14); }
+  .faq-item{ border-top:1px solid rgba(41,36,30,0.14); }
+  .faq-item:last-child{ border-bottom:1px solid rgba(41,36,30,0.14); }
   .faq-item summary{ cursor:pointer; list-style:none; padding: 22px 2px; font-family: var(--ff-display); font-size:19px; font-style: italic; display:flex; justify-content:space-between; align-items:center; gap:16px; }
   .faq-item summary::-webkit-details-marker{ display:none; }
   .faq-item summary::after{ content:'+'; font-family: var(--ff-body); font-style: normal; font-size:26px; color: var(--terracotta); flex-shrink:0; transition: transform .3s ease; line-height: 1; }
@@ -388,7 +388,7 @@
   }
   footer .logo{ height: 44px; width: auto; display: block; margin: 0 auto; }
   footer a{ color: var(--rose); font-size: 14px; }
-  footer .legal{ font-size: 12px; color: rgba(244,236,224,0.5); margin-top: 6px; }
+  footer .legal{ font-size: 12px; color: rgba(242,237,226,0.5); margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -503,11 +503,11 @@
 
     <div class="dial-block reveal" id="dialBlock">
       <svg width="260" height="150" viewBox="0 0 400 220" aria-hidden="true">
-        <path d="M40,200 A160,160 0 0 1 360,200" fill="none" stroke="#C9ADAE" stroke-width="3"/>
-        <text x="30" y="215" font-family="Space Mono, monospace" font-size="13" fill="#8C7275">DIRIGIDO</text>
-        <text x="288" y="215" font-family="Space Mono, monospace" font-size="13" fill="#8C7275">ESPONTÁNEO</text>
-        <circle cx="200" cy="200" r="6" fill="#4E1515"/>
-        <line id="dialNeedle" x1="200" y1="200" x2="200" y2="55" stroke="#7A1E2E" stroke-width="4" stroke-linecap="round"/>
+        <path d="M40,200 A160,160 0 0 1 360,200" fill="none" stroke="#C9BFA8" stroke-width="3"/>
+        <text x="30" y="215" font-family="Space Mono, monospace" font-size="13" fill="#6B5F4E">DIRIGIDO</text>
+        <text x="288" y="215" font-family="Space Mono, monospace" font-size="13" fill="#6B5F4E">ESPONTÁNEO</text>
+        <circle cx="200" cy="200" r="6" fill="#29241E"/>
+        <line id="dialNeedle" x1="200" y1="200" x2="200" y2="55" stroke="#786242" stroke-width="4" stroke-linecap="round"/>
       </svg>
       <p class="dial-caption">Ni completamente <span>dirigido</span>, ni completamente <span>espontáneo</span> — ahí en medio es donde vivimos.</p>
     </div>
