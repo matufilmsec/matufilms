@@ -218,18 +218,16 @@
   .filmstrip-head{ text-align:center; max-width: 640px; margin: 0 auto 48px; }
   .filmstrip-head h2{ font-size: clamp(30px,5vw,52px); font-style: italic; }
   .filmstrip-head .sub{ font-family: var(--ff-body); font-size: 16px; color: var(--gray); margin-top: 12px; }
-  .filmstrip{
-    display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory;
-    padding: 0 24px 16px; -webkit-overflow-scrolling:touch;
+  .portfolio-grid{
+    display:grid; grid-template-columns: repeat(2,1fr); gap:12px;
+    padding: 0 24px;
   }
-  @media (min-width:768px){ .filmstrip{ padding: 0 56px 16px; } }
-  .filmstrip::-webkit-scrollbar{ height:5px; }
-  .filmstrip::-webkit-scrollbar-thumb{ background: rgba(41,36,30,0.25); border-radius:3px; }
-  .filmstrip img{
-    height: 58vh; max-height: 540px; width:auto; flex-shrink:0; scroll-snap-align:start;
-    border-radius:3px; filter:grayscale(55%) contrast(1.02); transition:filter .5s ease, transform .5s ease;
+  @media (min-width:700px){ .portfolio-grid{ grid-template-columns: repeat(3,1fr); gap:16px; padding: 0 56px; } }
+  .portfolio-grid img{
+    width:100%; height:100%; aspect-ratio: 3/4; object-fit:cover; display:block;
+    border-radius:3px; filter:grayscale(55%) contrast(1.02); transition:filter .5s ease;
   }
-  .filmstrip img:hover{ filter:grayscale(0%); transform: scale(1.01); }
+  .portfolio-grid img:hover{ filter:grayscale(0%); }
   .filmstrip-more{ text-align:center; margin-top: 40px; }
 
   /* ============ PROCESO ============ */
@@ -258,14 +256,14 @@
     position: relative; min-height: 560px; border-radius: 4px; overflow: hidden;
     background-size: cover; background-position: center;
   }
-  .values-cloud::after{ content:''; position:absolute; inset:0; background: rgba(41,36,30,0.56); }
+  .values-cloud::after{ content:''; position:absolute; inset:0; background: rgba(41,36,30,0.26); }
   .values-cloud-head{ position:absolute; top:56px; left:0; right:0; text-align:center; z-index:2; padding:0 24px; }
-  .values-cloud-head .eyebrow{ color: var(--rose); text-align:center; }
-  .values-cloud-head h2{ color: var(--ivory); font-size: clamp(24px,4vw,36px); font-style: italic; max-width: 560px; margin: 0 auto; }
+  .values-cloud-head .eyebrow{ color: var(--rose); text-align:center; text-shadow: 0 1px 10px rgba(0,0,0,0.5); }
+  .values-cloud-head h2{ color: var(--ivory); font-size: clamp(24px,4vw,36px); font-style: italic; max-width: 560px; margin: 0 auto; text-shadow: 0 2px 18px rgba(0,0,0,0.55); }
   .word-field{ position:absolute; inset:0; z-index:1; }
-  .word{ position:absolute; font-family: var(--ff-display); color: var(--ivory); white-space:nowrap; }
+  .word{ position:absolute; font-family: var(--ff-display); color: var(--ivory); white-space:nowrap; text-shadow: 0 2px 14px rgba(0,0,0,0.55); }
   .w1{ top:20%; left:8%;  font-size: clamp(20px,3vw,30px); opacity:.9; }
-  .w2{ top:16%; left:52%; font-size: clamp(30px,5vw,52px); font-style:italic; opacity:.55; }
+  .w2{ top:64%; left:80%; font-size: clamp(30px,5vw,52px); font-style:italic; opacity:.55; }
   .w3{ top:32%; left:28%; font-family: var(--ff-script); font-size: clamp(40px,6vw,64px); color: var(--rose); }
   .w4{ top:46%; left:6%;  font-size: clamp(24px,3.6vw,36px); opacity:.85; }
   .w5{ top:52%; left:60%; font-size: clamp(22px,3.2vw,32px); opacity:.7; font-style:italic; }
@@ -451,7 +449,7 @@
     <h2 class="pull">Bodas, tal como pasaron.</h2>
     <p class="sub">Momentos reales, sin dirección de más.</p>
   </div>
-  <div class="filmstrip reveal">
+  <div class="portfolio-grid reveal">
     <img src="images/portfolio-1.jpg" alt="Auto vintage rojo con invitados celebrando la salida de los novios" loading="lazy">
     <img src="images/portfolio-2.jpg" alt="Detalle en blanco y negro del velo de la novia con el viento" loading="lazy">
     <img src="images/portfolio-3.jpg" alt="Novio besando la frente de la novia bajo un árbol" loading="lazy">
@@ -515,7 +513,7 @@
 </section>
 
 <!-- ================= VALUES CLOUD (firma) ================= -->
-<section class="values-cloud reveal" style="background-image:url('images/promesa-accent-2.jpg');">
+<section class="values-cloud reveal" style="background-image:url('images/values-cloud-bg.jpg'); background-position: center 80%;">
   <div class="values-cloud-head">
     <span class="eyebrow">Lo que le da forma a nuestro trabajo</span>
     <h2>No solo en qué creemos — en cómo vamos a estar ahí para ustedes.</h2>
