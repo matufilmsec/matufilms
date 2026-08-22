@@ -6,23 +6,33 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://matufilms.com/diario.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://matufilms.com/blog/</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://matufilms.com/como-elegir-fotografo-de-bodas.html</loc>
+    <loc>https://matufilms.com/blog/como-elegir-fotografo-de-bodas.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://matufilms.com/cuanto-cuesta-fotografo-bodas-cuenca.html</loc>
+    <loc>https://matufilms.com/blog/cuanto-cuesta-fotografo-bodas-cuenca.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://matufilms.com/cuenca-destino-de-boda.html</loc>
+    <loc>https://matufilms.com/blog/cuenca-destino-de-boda.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matufilms.com/recursos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://matufilms.com/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
   </url>
 </urlset>

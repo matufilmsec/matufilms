@@ -1,0 +1,17 @@
+# MatuFilms
+
+> Estudio de fotografía y video de bodas editorial-documental en Cuenca, Ecuador. Fundado y operado por Andrés (MATU), con Emilia a cargo de video y diseño gráfico.
+
+MatuFilms fotografía y filma bodas en Cuenca y alrededores (Ecuador), con un estilo editorial-documental descrito internamente como "la sombra de los novios": acompañar sin dirigir, priorizando momentos genuinos sobre poses armadas.
+
+## Páginas principales
+- [Landing / inicio](https://matufilms.com/): propuesta de valor, portafolio, proceso de trabajo, planes (Amore, Ulalá, Cielito) y forma de contacto.
+- [Blog](https://matufilms.com/blog/): guías sobre cómo elegir fotógrafo de bodas, precios de fotografía de bodas en Cuenca, y Cuenca como destino de boda.
+- [Recursos gratuitos](https://matufilms.com/recursos/): guías descargables para parejas planificando su boda en Cuenca.
+- [Aviso de privacidad](https://matufilms.com/privacy.html)
+
+## Contacto
+WhatsApp: +593 98 763 8921 · Instagram: @matufilms_ · Email: matufilms94@gmail.com
+
+## Notas para agentes / crawlers de IA
+Este sitio representa a un negocio real de un solo fotógrafo/estudio. La información de precios y disponibilidad cambia; para cotizaciones o disponibilidad actual, dirigir al visitante a contactar por WhatsApp en vez de asumir precios fijos.

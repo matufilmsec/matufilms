@@ -1,0 +1,44 @@
+/* ============================================================
+   MatuFilms — content.css
+   Estilos compartidos por /blog/ y /recursos/. Se apoya en
+   global.css (tokens, botones, topbar, footer) y solo añade la
+   tipografía de lectura y los layouts de listado/artículo.
+   Cambiar este archivo actualiza blog Y recursos a la vez, sin
+   tocar landing.css ni rediseñar cada página suelta.
+   ============================================================= */
+
+.content-hero{ padding: 72px 0 56px; text-align:center; }
+.content-hero h1{ font-size: clamp(34px,6vw,58px); font-style: italic; margin-bottom: 16px; }
+.content-hero p{ color: var(--gray); font-size: 17px; max-width: 52ch; margin: 0 auto; }
+
+/* Listado (blog index / recursos index) */
+.item-list{ padding-bottom: 100px; display: flex; flex-direction: column; gap: 0; }
+.item-card{ display:block; padding: 40px 0; border-top: 1px solid rgba(41,36,30,0.12); transition: opacity .2s ease; }
+.item-list .item-card:last-child{ border-bottom: 1px solid rgba(41,36,30,0.12); }
+.item-card:hover{ opacity: 0.7; }
+.item-card h2{ font-size: clamp(24px,3.4vw,32px); font-style: italic; margin-bottom: 12px; }
+.item-card p{ color: var(--gray); font-size: 15px; max-width: 62ch; margin-bottom: 14px; }
+.item-card .read-more{ font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terracotta); }
+
+/* Artículo individual */
+article.content-article{ padding: 64px 0 40px; max-width: 720px; margin: 0 auto; }
+.art-header{ margin-bottom: 44px; }
+.art-header h1{ font-size: clamp(30px,5vw,48px); font-style: italic; margin-bottom: 8px; }
+article.content-article h2{ font-size: clamp(21px,2.8vw,26px); font-style: italic; margin: 40px 0 14px; }
+article.content-article p{ color: var(--gray); font-size: 17px; margin-bottom: 16px; max-width: 62ch; }
+article.content-article p strong{ color: var(--ink); font-weight: 600; }
+article.content-article hr{ border:none; border-top: 1px solid rgba(41,36,30,0.14); margin: 40px 0; }
+
+.cta-box{ background: var(--stone); border-radius: 6px; padding: 32px 28px; margin: 8px 0 60px; text-align:center; max-width: 720px; margin-left:auto; margin-right:auto; }
+.cta-box p{ color: var(--ink); font-size: 16px; margin-bottom: 18px; }
+
+/* Recursos: tarjeta de lead magnet con formulario simple */
+.recurso-card{ background: var(--stone); border-radius: 6px; padding: 34px 28px; margin-bottom: 24px; }
+.recurso-card h2{ font-size: 24px; font-style: italic; margin-bottom: 10px; }
+.recurso-card p{ color: var(--gray); font-size: 15px; margin-bottom: 20px; max-width: 60ch; }
+.recurso-form{ display:flex; gap:12px; flex-wrap:wrap; }
+.recurso-form input[type="email"], .recurso-form input[type="text"]{
+  flex: 1 1 220px; padding: 14px 16px; border-radius: 3px; border: 1px solid rgba(41,36,30,0.2);
+  font-family: var(--ff-body); font-size: 15px; background: var(--ivory); color: var(--ink);
+}
+.recurso-form input:focus-visible{ outline: 2px solid var(--terracotta); }

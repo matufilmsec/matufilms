@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos gratuitos para tu boda — MatuFilms</title>
+<meta name="description" content="Guías gratuitas para parejas planificando su boda en Cuenca, Ecuador. Por MatuFilms.">
+<meta name="theme-color" content="#29241E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Italianno&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/global.css">
+<link rel="stylesheet" href="/assets/css/content.css">
+
+<!-- ============================================================
+NOTA PARA ANDRÉS:
+- Esta carpeta (/recursos/) es donde van tus guías/checklists
+  descargables gratuitos, pensados para tu cliente ideal (parejas
+  planificando su boda en Cuenca) — sirven para captar contactos
+  ANTES de que estén listos para agendar una reunión.
+- El formulario de abajo usa Netlify Forms (gratis, sin backend
+  propio): solo debes activar "Forms" en tu panel de Netlify y
+  las respuestas te llegan ahí / por email.
+- No agregué un evento de tracking nuevo para "descargó recurso"
+  porque no estaba en tu lista de eventos del embudo — si quieres
+  medir esto (por ejemplo como "Lead" o como personalizado
+  "DescargoRecurso"), dímelo y lo agrego en tracking.js.
+- Cuando tengas el PDF real, súbelo a /recursos/descargas/ y
+  cambia el href del botón de "Descargar" a esa ruta.
+============================================================= -->
+</head>
+<body data-mf-page="recursos">
+
+<div class="topbar topbar-static">
+<a href="/"><img class="logo" src="/assets/img/logo-ink.png" alt="MatuFilms"></a>
+<a class="back-link" href="/">← Volver al inicio</a>
+</div>
+
+<section class="content-hero wrap">
+<span class="eyebrow" style="text-align:center;">Recursos gratuitos</span>
+<h1>Guías para planificar tu boda en Cuenca.</h1>
+<p>Sin costo, sin letra chica. Descarga lo que te sirva ahora, aunque todavía no hayas decidido fotógrafo.</p>
+</section>
+
+<section class="wrap-narrow" style="padding-bottom:100px;">
+
+<div class="recurso-card">
+<h2>Checklist: qué resolver antes de contratar tu fotógrafo</h2>
+<p>Las 12 preguntas que deberías tener respondidas antes de firmar con cualquier fotógrafo de bodas — presupuesto, horas de cobertura, entregables y más.</p>
+<form class="recurso-form" name="recurso-checklist-fotografo" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="recurso-checklist-fotografo">
+<p style="display:none;"><label>No llenar: <input name="bot-field"></label></p>
+<input type="text" name="nombre" placeholder="Tu nombre" required>
+<input type="email" name="email" placeholder="Tu email" required>
+<button type="submit" class="btn">Enviarme la guía</button>
+</form>
+</div>
+
+<div class="recurso-card">
+<h2>Checklist: cronograma del día de la boda</h2>
+<p>Plantilla de horarios hora por hora para que tu día fluya — desde los preparativos hasta la última canción, pensada para bodas en Cuenca.</p>
+<form class="recurso-form" name="recurso-cronograma-boda" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="recurso-cronograma-boda">
+<p style="display:none;"><label>No llenar: <input name="bot-field"></label></p>
+<input type="text" name="nombre" placeholder="Tu nombre" required>
+<input type="email" name="email" placeholder="Tu email" required>
+<button type="submit" class="btn">Enviarme la plantilla</button>
+</form>
+</div>
+
+</section>
+
+<footer class="site-footer">
+<img class="logo" src="/assets/img/logo-ivory.png" alt="MatuFilms">
+<a href="https://www.instagram.com/matufilms_" target="_blank" rel="noopener">@matufilms_</a>
+<div class="legal">© <span id="year"></span> MatuFilms. Todas las fotos y videos son propiedad de MatuFilms.</div>
+</footer>
+
+<script src="/assets/js/ui.js"></script>
+<script src="/assets/js/tracking.js"></script>
+</body>
+</html>
