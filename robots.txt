@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /netlify/functions/
 
 Sitemap: https://matufilms.com/sitemap.xml

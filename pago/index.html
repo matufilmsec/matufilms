@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Completa tu pago — MatuFilms</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#29241E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Italianno&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/global.css">
+
+<!-- ============================================================
+NOTA PARA ANDRÉS — cómo funciona esta página:
+
+Esta ÚNICA página cubre las dos etapas de pago que pediste:
+
+1) "Inicio compra" se dispara SOLO al entrar a esta página
+   (equivale a InitiateCheckout de Meta).
+
+2) "Compra" se dispara cuando tu pasarela de pago (Payphone,
+   PagoPlux, Stripe Payment Link, etc.) redirige de vuelta AQUÍ
+   con parámetros en la URL confirmando el pago, por ejemplo:
+   https://matufilms.com/pago/?status=success&order_id=1234&amount=450&currency=USD
+
+   Configura la "URL de redirección tras el pago" de tu pasarela
+   apuntando aquí con esos parámetros. Si tu pasarela usa nombres
+   de parámetro distintos, ajusta la función leerConfirmacionDePago()
+   más abajo — están comentadas una por una.
+
+Mientras no llegue esa confirmación, la página muestra el botón
+para ir a pagar (reemplaza PAYMENT_LINK_AQUI por tu link real de
+pago o de Payphone/PagoPlux).
+============================================================= -->
+</head>
+<body data-mf-page="pago">
+
+<div class="topbar topbar-static">
+<a href="/"><img class="logo" src="/assets/img/logo-ink.png" alt="MatuFilms"></a>
+</div>
+
+<section class="simple-page">
+<div class="box" id="estadoPago">
+<!-- El contenido se rellena por JS según si el pago ya se confirmó o no -->
+</div>
+</section>
+
+<footer class="site-footer">
+<img class="logo" src="/assets/img/logo-ivory.png" alt="MatuFilms">
+<div class="legal">© <span id="year"></span> MatuFilms.</div>
+</footer>
+
+<script src="/assets/js/ui.js"></script>
+<script src="/assets/js/tracking.js"></script>
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+
+  function leerConfirmacionDePago() {
+    // Ajusta estos nombres de parámetro a los que use tu pasarela real.
+    var status = params.get("status"); // ej: "success"
+    var orderId = params.get("order_id") || params.get("orderId") || params.get("uid");
+    var amount = params.get("amount") || params.get("value");
+    var currency = params.get("currency") || "USD";
+    var pagoConfirmado = status === "success" && !!orderId;
+    return { pagoConfirmado: pagoConfirmado, orderId: orderId, amount: amount, currency: currency };
+  }
+
+  var info = leerConfirmacionDePago();
+  var box = document.getElementById("estadoPago");
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (info.pagoConfirmado) {
+      window.MF.track("compra", {
+        refId: info.orderId,
+        eventId: "pago_" + info.orderId,
+        value: info.amount ? parseFloat(info.amount) : undefined,
+        currency: info.currency,
+        contentName: "Pago de paquete de boda"
+      });
+      box.innerHTML =
+        '<span class="eyebrow" style="text-align:center;">Pago confirmado</span>' +
+        "<h1>¡Gracias! Tu pago quedó registrado.</h1>" +
+        "<p>Te escribimos por WhatsApp para coordinar los siguientes pasos y agendar tu sesión.</p>" +
+        '<a class="btn" data-mf-event="contacto" data-mf-source="whatsapp" href="https://wa.me/593987638921?text=Hola%20MATU%2C%20ya%20realic%C3%A9%20mi%20pago" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>';
+      window.MF.rebind();
+    } else {
+      window.MF.track("inicio_compra", { contentName: "Checkout MatuFilms" });
+      box.innerHTML =
+        '<span class="eyebrow" style="text-align:center;">Un paso más</span>' +
+        "<h1>Estás a un paso de confirmar tu fecha.</h1>" +
+        "<p>Haz clic para completar el pago de forma segura. En cuanto se confirme, te contactamos por WhatsApp.</p>" +
+        '<a class="btn" href="PAYMENT_LINK_AQUI">Ir a pagar</a>' +
+        '<p class="microcopy">¿Dudas antes de pagar? <a href="https://wa.me/593987638921" target="_blank" rel="noopener" style="text-decoration:underline;">Escríbenos por WhatsApp</a></p>';
+    }
+  });
+})();
+</script>
+</body>
+</html>

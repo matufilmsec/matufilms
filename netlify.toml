@@ -1,0 +1,55 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# --- Redirects de SEO: la landing y el diario se movieron de estructura ---
+[[redirects]]
+  from = "/diario.html"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/como-elegir-fotografo-de-bodas.html"
+  to = "/blog/como-elegir-fotografo-de-bodas.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cuanto-cuesta-fotografo-bodas-cuenca.html"
+  to = "/blog/cuanto-cuesta-fotografo-bodas-cuenca.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cuenca-destino-de-boda.html"
+  to = "/blog/cuenca-destino-de-boda.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/images/*"
+  to = "/assets/img/:splat"
+  status = 301
+  force = true
+
+# 404 personalizado
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
