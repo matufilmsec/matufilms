@@ -36,7 +36,7 @@
   //    conseguir cada uno.
   // ============================================================
   var CONFIG = {
-    META_PIXEL_ID: "", // ej: "1234567890123456" — Meta Events Manager
+    META_PIXEL_ID: "1327851786089034", // ej: "1234567890123456" — Meta Events Manager
     GA4_ID: "", // ej: "G-XXXXXXXXXX"
     TIKTOK_PIXEL_ID: "", // ej: "CXXXXXXXXXXXXXXXXXXX"
     CAPI_ENDPOINT: "/.netlify/functions/capi", // función Netlify — ver netlify/functions/capi.js
