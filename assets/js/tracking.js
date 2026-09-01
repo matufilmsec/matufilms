@@ -81,6 +81,18 @@
       ttq: "ClickButton",
       persistent: false
     },
+    quiero_agendar_sesion: {
+      label: "Quiero agendar sesion",
+      // Igual que interesado_reunion: un clic es solo INTENCION de
+      // agendar. La conversion real ("Schedule"/Programar) se dispara
+      // aparte cuando la sesion ya quedo confirmada en Cal.com (ver
+      // gracias-sesion/index.html) -> asi no se infla el evento
+      // "Programar" con gente que solo dio clic y no siguio.
+      meta: { name: "QuieroAgendarSesion", type: "custom" },
+      ga4: "quiero_agendar_sesion",
+      ttq: "ClickButton",
+      persistent: false
+    },
     cliente_potencial: {
       label: "Cliente potencial",
       meta: { name: "Lead", type: "standard" },
