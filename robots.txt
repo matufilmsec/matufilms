@@ -3,6 +3,8 @@ Allow: /
 Disallow: /netlify/functions/
 Disallow: /p/
 Disallow: /planes/
+Disallow: /planes
+Disallow: /propuesta
 Disallow: /seguimiento/
 
 Sitemap: https://matufilms.com/sitemap.xml

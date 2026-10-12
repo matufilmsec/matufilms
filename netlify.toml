@@ -37,9 +37,18 @@
   force = true
 
 # Enlaces personalizados de planes para prospectos: /p/CODIGO se sirve
-# desde /planes/ (la URL no cambia). Sin indexar ni guardar en caché.
+# desde /plan/ (la URL no cambia). Sin indexar ni guardar en caché.
 [[redirects]]
   from = "/p/*"
+  to = "/plan/index.html"
+  status = 200
+  force = true
+
+# Enlaces universales: /planes (tarifa A) ya se sirve desde /planes/;
+# /propuesta (tarifa B) usa la misma página. Quien llega deja su nombre
+# y WhatsApp y se crea su enlace personal /p/CODIGO automáticamente.
+[[redirects]]
+  from = "/propuesta"
   to = "/planes/index.html"
   status = 200
   force = true
@@ -67,6 +76,16 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "no-store"
+
+[[headers]]
+  for = "/planes/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/propuesta"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
 [[headers]]
   for = "/seguimiento/*"

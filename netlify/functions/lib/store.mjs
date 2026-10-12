@@ -6,6 +6,7 @@
    Estructura de cada prospecto (clave: su código, ej. "liz-y-joel-k7x2"):
    {
      code, nombre, tarifa ("A" | "B"), fecha_boda, contacto, notas,
+     origen ("manual" | "formulario": lo creó Matu o se registró solo),
      estado_manual (null | "contactado" | "ganado" | "perdido"),
      seguimiento_fecha, archivado, creado,
      stats: { vistas, primera_vista, ultima_vista, planes_vistos{},
@@ -80,7 +81,7 @@ export async function listarProspectos(store) {
   return items.filter(Boolean);
 }
 
-export function crearProspecto({ nombre, tarifa, fecha_boda, contacto, notas }) {
+export function crearProspecto({ nombre, tarifa, fecha_boda, contacto, notas, origen }) {
   return {
     code: nuevoCodigo(nombre),
     nombre: String(nombre).trim().slice(0, 80),
@@ -88,6 +89,7 @@ export function crearProspecto({ nombre, tarifa, fecha_boda, contacto, notas }) 
     fecha_boda: fecha_boda || null,
     contacto: contacto ? String(contacto).trim().slice(0, 120) : "",
     notas: notas ? String(notas).trim().slice(0, 1000) : "",
+    origen: origen === "formulario" ? "formulario" : "manual",
     estado_manual: null,
     seguimiento_fecha: null,
     archivado: false,
