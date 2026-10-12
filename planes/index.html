@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1327851786089034');
+  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
+<title>Tus planes de boda — MatuFilms</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#29241E">
+<link rel="icon" type="image/png" href="/assets/img/logo-ink.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Italianno&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/global.css">
+<style>
+  /* Página personalizada de planes — /p/CODIGO (se sirve desde /planes/) */
+  .pp-hero{ padding: 150px 0 56px; }
+  @media (min-width: 768px){ .pp-hero{ padding: 190px 0 72px; } }
+  .pp-hero h1{ font-size: clamp(34px, 6vw, 64px); font-style: italic; margin-bottom: 20px; }
+  .pp-hero p{ color: var(--gray); font-size: 18px; max-width: 620px; }
+  .pp-fecha{ display: inline-block; margin-top: 24px; font-family: var(--ff-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--terracotta); border: 1px solid var(--rose); border-radius: 20px; padding: 7px 16px; }
+
+  .pp-planes{ padding: 24px 0 88px; }
+  @media (min-width: 768px){ .pp-planes{ padding: 24px 0 120px; } }
+  .pp-grid{ display: grid; gap: 28px; }
+  @media (min-width: 900px){ .pp-grid{ grid-template-columns: repeat(3, 1fr); align-items: stretch; } }
+  .pp-card{ background: var(--stone); border-radius: 6px; padding: 38px 30px 32px; position: relative; display: flex; flex-direction: column; }
+  .pp-card.featured{ border: 2px solid var(--terracotta); background: var(--ivory); }
+  .pp-badge{ position: absolute; top: -13px; right: 24px; background: var(--terracotta); color: var(--ivory); font-family: var(--ff-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; }
+  .pp-card h2{ font-size: 32px; font-style: italic; margin-bottom: 6px; }
+  .pp-horas{ font-family: var(--ff-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--terracotta); }
+  .pp-precio{ font-family: var(--ff-display); font-size: 46px; font-weight: 500; margin: 22px 0 4px; line-height: 1; }
+  .pp-precio small{ font-family: var(--ff-body); font-size: 14px; color: var(--gray); font-weight: 400; margin-left: 6px; }
+  .pp-card ul{ list-style: none; margin: 22px 0 30px; flex: 1; }
+  .pp-card li{ font-size: 15px; color: var(--gray); padding: 10px 0; border-top: 1px solid rgba(41,36,30,0.08); }
+  .pp-card li:first-child{ border-top: none; }
+  .pp-card .btn{ justify-content: center; width: 100%; }
+
+  .pp-info{ background: var(--stone); }
+  .pp-info .cols{ display: grid; gap: 40px; }
+  @media (min-width: 860px){ .pp-info .cols{ grid-template-columns: repeat(3, 1fr); gap: 56px; } }
+  .pp-info h3{ font-size: 24px; font-style: italic; margin-bottom: 12px; }
+  .pp-info p{ color: var(--gray); font-size: 16px; }
+  .pp-num{ font-family: var(--ff-mono); font-size: 12px; letter-spacing: .14em; color: var(--terracotta); display: block; margin-bottom: 10px; }
+
+  .pp-cta{ text-align: center; }
+  .pp-cta h2{ font-size: clamp(30px, 5vw, 48px); font-style: italic; margin-bottom: 18px; }
+  .pp-cta p{ color: var(--gray); max-width: 520px; margin: 0 auto 30px; font-size: 17px; }
+  .pp-cta .acciones{ display: flex; flex-wrap: wrap; gap: 20px 28px; justify-content: center; align-items: center; }
+
+  .pp-estado{ min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 160px 24px 80px; }
+  .pp-estado .box{ max-width: 520px; }
+  .pp-estado h1{ font-size: clamp(28px, 5vw, 42px); font-style: italic; margin-bottom: 16px; }
+  .pp-estado p{ color: var(--gray); margin-bottom: 26px; }
+  [hidden]{ display: none !important; }
+</style>
+</head>
+<body data-mf-page="planes-prospecto">
+
+<div class="topbar topbar-static">
+  <a href="/"><img class="logo" src="/assets/img/logo-ink.png" alt="MatuFilms"></a>
+</div>
+
+<main id="cargando" class="pp-estado"><div class="box"><p>Cargando tus planes…</p></div></main>
+
+<main id="noDisponible" class="pp-estado" hidden>
+  <div class="box">
+    <h1>Este enlace ya no está activo.</h1>
+    <p>Escríbenos por WhatsApp y te enviamos uno nuevo con los planes al día.</p>
+    <a class="btn" href="https://wa.me/593987638921?text=Hola%20MATU%2C%20necesito%20un%20enlace%20nuevo%20con%20los%20planes" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+  </div>
+</main>
+
+<div id="contenido" hidden>
+  <section class="pp-hero">
+    <div class="wrap">
+      <span class="eyebrow">Planes de boda</span>
+      <h1 id="saludo"></h1>
+      <p>Aquí tienes los tres planes con todo lo que incluyen. Revísalos con calma y, cuando quieras avanzar, agenda una videollamada con Matu para ajustar el plan a tu boda.</p>
+      <span class="pp-fecha" id="fecha" hidden></span>
+    </div>
+  </section>
+
+  <section class="pp-planes">
+    <div class="wrap">
+      <div class="pp-grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="pp-info">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <span class="pp-num">01</span>
+          <h3>Videollamada gratuita</h3>
+          <p>Conversamos sobre tu boda, el lugar y lo que más les importa. Sin compromiso.</p>
+        </div>
+        <div>
+          <span class="pp-num">02</span>
+          <h3>Ajustamos tu plan</h3>
+          <p>Cada plan se adapta a lo que necesitan. Cobertura extendida, álbumes y productos impresos se suman si los quieren.</p>
+        </div>
+        <div>
+          <span class="pp-num">03</span>
+          <h3>Reservas tu fecha</h3>
+          <p>Confirmas tu fecha con el 50% del valor del plan. El otro 50% completa el pago.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pp-cta">
+    <div class="wrap-narrow">
+      <h2>¿Hablamos de tu boda?</h2>
+      <p>Elige un horario para la videollamada o escríbenos por WhatsApp. Respondemos en menos de 24 horas.</p>
+      <div class="acciones">
+        <a class="btn" id="ctaReservar" data-mf-event="interesado_reunion" data-reservar="" target="_blank" rel="noopener">Agendar videollamada</a>
+        <a class="btn-outline" id="ctaWhatsapp" data-whatsapp="" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <img class="logo" src="/assets/img/logo-ivory.png" alt="MatuFilms">
+  <a href="https://www.instagram.com/matufilms_" target="_blank" rel="noopener">@matufilms_</a>
+  <div class="legal">© <span id="year"></span> MatuFilms.</div>
+</footer>
+
+<script src="/assets/js/ui.js"></script>
+<script src="/assets/js/tracking.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // /p/CODIGO  ->  CODIGO   (también acepta /planes/?c=CODIGO)
+  var partes = location.pathname.split("/").filter(Boolean);
+  var params = new URLSearchParams(location.search);
+  var code = (partes[0] === "p" && partes[1]) || params.get("c") || "";
+  // ?nt=1 -> vista previa desde el panel: no registra nada
+  var sinTracking = params.get("nt") === "1";
+
+  var $ = function (id) { return document.getElementById(id); };
+  var usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
+  function enviar(tipo, plan, seg) {
+    if (sinTracking || !code) return;
+    var cuerpo = JSON.stringify({ c: code, tipo: tipo, plan: plan || undefined, seg: seg });
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon("/api/plan-track", new Blob([cuerpo], { type: "application/json" }))) return;
+    } catch (e) {}
+    fetch("/api/plan-track", { method: "POST", headers: { "Content-Type": "application/json" }, body: cuerpo, keepalive: true }).catch(function () {});
+  }
+
+  function fechaLarga(iso) {
+    var d = new Date(iso + "T12:00:00");
+    if (isNaN(d)) return "";
+    return d.toLocaleDateString("es-EC", { day: "numeric", month: "long", year: "numeric" });
+  }
+
+  function mostrarNoDisponible() {
+    $("cargando").hidden = true;
+    $("noDisponible").hidden = false;
+  }
+
+  function urlCal(base, nombre, plan) {
+    var u = new URL(base);
+    u.searchParams.set("name", nombre);
+    if (plan) u.searchParams.set("notes", "Plan de interés: " + plan);
+    u.searchParams.set("metadata[prospecto]", code);
+    return u.toString();
+  }
+
+  function urlWhatsapp(numero, nombre, plan) {
+    var texto = "Hola MATU, soy " + nombre + ". Vi los planes" + (plan ? " y me interesa " + plan : "") + ". Quiero conocer más.";
+    return "https://wa.me/" + numero + "?text=" + encodeURIComponent(texto);
+  }
+
+  function pintar(d) {
+    $("saludo").textContent = "Hola, " + d.nombre + ".";
+    if (d.fecha_boda) {
+      var f = fechaLarga(d.fecha_boda);
+      if (f) { $("fecha").textContent = "Tu fecha: " + f; $("fecha").hidden = false; }
+    }
+
+    var grid = $("grid");
+    d.planes.forEach(function (p) {
+      var card = document.createElement("article");
+      card.className = "pp-card" + (p.destacado ? " featured" : "");
+      card.setAttribute("data-plan", p.id);
+      var items = p.incluye.map(function (t) { return "<li>" + t.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</li>"; }).join("");
+      card.innerHTML =
+        (p.destacado ? '<span class="pp-badge">Más elegido</span>' : "") +
+        "<h2>" + p.nombre + "</h2>" +
+        '<span class="pp-horas">Hasta ' + p.horas + " horas</span>" +
+        '<div class="pp-precio">' + usd.format(p.precio) + "<small>USD</small></div>" +
+        "<ul>" + items + "</ul>" +
+        '<a class="btn" data-mf-event="interesado_reunion" data-mf-content="' + p.nombre + '" data-reservar="' + p.id + '" target="_blank" rel="noopener">Reservar con este plan</a>';
+      grid.appendChild(card);
+    });
+
+    // Enlaces de reserva y WhatsApp (el plan elegido viaja en las notas de Cal)
+    var nombresPlan = {};
+    d.planes.forEach(function (p) { nombresPlan[p.id] = p.nombre; });
+    document.querySelectorAll("[data-reservar]").forEach(function (a) {
+      var id = a.getAttribute("data-reservar");
+      a.href = urlCal(d.cal_url, d.nombre, id ? nombresPlan[id] : "");
+      a.addEventListener("click", function () { enviar("reservar", id || undefined); });
+    });
+    document.querySelectorAll("[data-whatsapp]").forEach(function (a) {
+      a.href = urlWhatsapp(d.whatsapp, d.nombre, "");
+      a.addEventListener("click", function () { enviar("whatsapp"); });
+    });
+
+    $("cargando").hidden = true;
+    $("contenido").hidden = false;
+    if (window.MF && window.MF.rebind) window.MF.rebind();
+
+    // Una vista por sesión del navegador
+    var claveVista = "mf_vista_" + code;
+    var yaVisto = false;
+    try { yaVisto = !!sessionStorage.getItem(claveVista); } catch (e) {}
+    if (!yaVisto) {
+      try { sessionStorage.setItem(claveVista, "1"); } catch (e) {}
+      enviar("vista");
+    }
+
+    // Qué plan estuvo a la vista (una vez por plan y sesión)
+    if ("IntersectionObserver" in window) {
+      var vistos = {};
+      var io = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (en) {
+          var id = en.target.getAttribute("data-plan");
+          if (en.isIntersecting && !vistos[id]) {
+            vistos[id] = true;
+            io.unobserve(en.target);
+            enviar("plan_visto", id);
+          }
+        });
+      }, { threshold: 0.6 });
+      document.querySelectorAll(".pp-card").forEach(function (c) { io.observe(c); });
+    }
+
+    // Tiempo en pantalla (solo cuando la pestaña está visible)
+    var visibleDesde = document.visibilityState === "visible" ? Date.now() : null;
+    var acumulado = 0;
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "hidden") {
+        if (visibleDesde) { acumulado += (Date.now() - visibleDesde) / 1000; visibleDesde = null; }
+        if (acumulado >= 3) { enviar("tiempo", undefined, Math.round(acumulado)); acumulado = 0; }
+      } else {
+        visibleDesde = Date.now();
+      }
+    });
+  }
+
+  if (!code) { mostrarNoDisponible(); return; }
+  fetch("/api/plan?c=" + encodeURIComponent(code))
+    .then(function (r) { if (!r.ok) throw new Error("no disponible"); return r.json(); })
+    .then(pintar)
+    .catch(mostrarNoDisponible);
+})();
+</script>
+</body>
+</html>

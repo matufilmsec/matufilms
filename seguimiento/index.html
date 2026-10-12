@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seguimiento de prospectos — MatuFilms</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#29241E">
+<link rel="icon" type="image/png" href="/assets/img/logo-ink.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/global.css">
+<style>
+  section{ padding: 0; }
+  .sg-top{ padding: 28px 0 8px; }
+  .sg-top h1{ font-size: clamp(28px, 4vw, 40px); font-style: italic; }
+  .sg-bar{ display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; padding: 8px 0 24px; }
+  .sg-stats{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 28px; }
+  @media (min-width: 720px){ .sg-stats{ grid-template-columns: repeat(4, 1fr); } }
+  .sg-stat{ background: var(--stone); border-radius: 6px; padding: 18px 20px; }
+  .sg-stat b{ display: block; font-family: var(--ff-display); font-size: 34px; font-weight: 500; line-height: 1.1; }
+  .sg-stat span{ font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); }
+
+  .sg-filtros{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .sg-filtros button{ font-family: var(--ff-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding: 8px 14px; border-radius: 20px; border: 1px solid var(--rose); background: transparent; color: var(--ink); cursor: pointer; }
+  .sg-filtros button.on{ background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+  .btn-sm{ padding: 11px 20px; font-size: 14px; }
+  .btn-ghost{ background: transparent; color: var(--ink); border: 1px solid var(--ink); box-shadow: none; }
+  .btn-ghost:hover{ box-shadow: none; background: var(--stone); }
+
+  .sg-lista{ display: grid; gap: 12px; padding-bottom: 80px; }
+  .sg-fila{ background: var(--stone); border-radius: 6px; padding: 18px 20px; display: grid; gap: 10px 20px; cursor: pointer; border: 2px solid transparent; }
+  @media (min-width: 860px){ .sg-fila{ grid-template-columns: 1.3fr 1fr 1.6fr auto; align-items: center; } }
+  .sg-fila:hover{ border-color: var(--rose); }
+  .sg-fila.caliente{ border-color: var(--terracotta); background: var(--ivory); }
+  .sg-nombre{ font-family: var(--ff-display); font-size: 21px; font-style: italic; line-height: 1.2; }
+  .sg-sub{ font-size: 13px; color: var(--gray); }
+  .sg-estado{ display: inline-block; font-family: var(--ff-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; background: var(--rose); color: var(--ink); }
+  .sg-estado.hot{ background: var(--terracotta); color: var(--ivory); }
+  .sg-estado.ok{ background: var(--ink); color: var(--ivory); }
+  .sg-estado.off{ background: transparent; border: 1px solid var(--rose); color: var(--gray); }
+  .sg-sug{ font-size: 14px; }
+  .sg-acciones{ display: flex; gap: 8px; }
+  .sg-vacio{ text-align: center; color: var(--gray); padding: 60px 0; }
+
+  /* Panel de acceso */
+  .sg-login{ min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+  .sg-login form{ max-width: 380px; width: 100%; text-align: center; }
+  .sg-login h1{ font-size: 34px; font-style: italic; margin-bottom: 18px; }
+  input, select, textarea{ font: inherit; color: var(--ink); background: var(--ivory); border: 1px solid var(--rose); border-radius: 3px; padding: 12px 14px; width: 100%; }
+  input:focus, select:focus, textarea:focus{ outline: 2px solid var(--terracotta); outline-offset: 1px; }
+  textarea{ min-height: 90px; resize: vertical; }
+  label{ display: block; font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
+  .campo{ margin-bottom: 16px; }
+  .error{ color: #8a2f1f; font-size: 14px; margin-top: 12px; min-height: 20px; }
+
+  /* Ventana lateral */
+  .sg-vel{ position: fixed; inset: 0; background: rgba(41,36,30,.45); z-index: 80; display: none; }
+  .sg-vel.on{ display: block; }
+  .sg-cajon{ position: absolute; top: 0; right: 0; bottom: 0; width: min(520px, 100%); background: var(--ivory); padding: 28px 24px 40px; overflow-y: auto; }
+  .sg-cajon h2{ font-size: 28px; font-style: italic; margin-bottom: 4px; }
+  .sg-cerrar{ position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--ink); }
+  .sg-enlace{ display: flex; gap: 8px; margin: 18px 0; }
+  .sg-enlace input{ font-family: var(--ff-mono); font-size: 13px; }
+  .sg-hist{ list-style: none; margin: 8px 0 24px; border-left: 2px solid var(--rose); padding-left: 16px; }
+  .sg-hist li{ font-size: 14px; padding: 6px 0; color: var(--gray); }
+  .sg-hist b{ color: var(--ink); font-weight: 600; }
+  .sg-2{ display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+  .sg-toast{ position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--ivory); padding: 12px 22px; border-radius: 3px; font-size: 14px; z-index: 100; opacity: 0; pointer-events: none; transition: opacity .25s; }
+  .sg-toast.on{ opacity: 1; }
+  [hidden]{ display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="topbar topbar-static">
+  <a href="/"><img class="logo" src="/assets/img/logo-ink.png" alt="MatuFilms"></a>
+</div>
+
+<section id="login" class="sg-login">
+  <form id="loginForm">
+    <h1>Seguimiento</h1>
+    <div class="campo"><label for="tok">Clave de acceso</label><input id="tok" type="password" autocomplete="current-password" required></div>
+    <button class="btn" type="submit" style="width:100%;justify-content:center;">Entrar</button>
+    <div class="error" id="loginError"></div>
+  </form>
+</section>
+
+<section id="app" hidden>
+  <div class="wrap">
+    <div class="sg-top"><span class="eyebrow">Prospectos</span><h1>Seguimiento de planes</h1></div>
+    <div class="sg-bar">
+      <div class="sg-filtros" id="filtros"></div>
+      <button class="btn btn-sm" id="btnNuevo">+ Nuevo prospecto</button>
+    </div>
+    <div class="sg-stats" id="stats"></div>
+    <div class="sg-lista" id="lista"></div>
+  </div>
+</section>
+
+<div class="sg-vel" id="velNuevo">
+  <div class="sg-cajon">
+    <button class="sg-cerrar" data-cerrar aria-label="Cerrar">×</button>
+    <span class="eyebrow">Nuevo</span>
+    <h2>Crear enlace de planes</h2>
+    <form id="formNuevo" style="margin-top:22px;">
+      <div class="campo"><label for="nNombre">Nombre de la pareja</label><input id="nNombre" required maxlength="80" placeholder="Liz y Joel"></div>
+      <div class="sg-2">
+        <div class="campo"><label for="nTarifa">Tarifa</label>
+          <select id="nTarifa"><option value="A">Tarifa A (base)</option><option value="B">Tarifa B (un nivel arriba)</option></select></div>
+        <div class="campo"><label for="nFecha">Fecha de la boda</label><input id="nFecha" type="date"></div>
+      </div>
+      <div class="campo"><label for="nContacto">WhatsApp o correo</label><input id="nContacto" maxlength="120"></div>
+      <div class="campo"><label for="nNotas">Notas</label><textarea id="nNotas" maxlength="1000" placeholder="Lugar, cómo llegaron, qué preguntaron…"></textarea></div>
+      <button class="btn" type="submit">Crear enlace</button>
+      <div class="error" id="nError"></div>
+    </form>
+    <div id="nResultado" hidden>
+      <div class="sg-enlace"><input id="nEnlace" readonly><button class="btn btn-sm" id="nCopiar" type="button">Copiar</button></div>
+      <label>Mensaje listo para enviar</label>
+      <textarea id="nMensaje" readonly style="min-height:130px;"></textarea>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+        <button class="btn btn-sm" id="nCopiarMsg" type="button">Copiar mensaje</button>
+        <button class="btn btn-sm btn-ghost" id="nOtro" type="button">Crear otro</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sg-vel" id="velDetalle">
+  <div class="sg-cajon" id="detalle"></div>
+</div>
+
+<div class="sg-toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var token = "";
+  try { token = sessionStorage.getItem("mf_admin") || ""; } catch (e) {}
+  var datos = [];
+  var filtro = "activos";
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function toast(t) { var el = $("toast"); el.textContent = t; el.classList.add("on"); setTimeout(function () { el.classList.remove("on"); }, 2200); }
+
+  function api(metodo, query, cuerpo) {
+    return fetch("/api/admin/prospectos" + (query || ""), {
+      method: metodo,
+      headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" },
+      body: cuerpo ? JSON.stringify(cuerpo) : undefined
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        if (!r.ok) { var e = new Error(j.error || "Error"); e.status = r.status; throw e; }
+        return j;
+      });
+    });
+  }
+
+  // ---------- Tiempo ----------
+  function hace(iso) {
+    if (!iso) return "—";
+    var min = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
+    if (min < 1) return "ahora";
+    if (min < 60) return "hace " + min + " min";
+    var h = Math.round(min / 60);
+    if (h < 24) return "hace " + h + " h";
+    var d = Math.round(h / 24);
+    return "hace " + d + (d === 1 ? " día" : " días");
+  }
+  function horasDesde(iso) { return iso ? (Date.now() - new Date(iso).getTime()) / 3600000 : Infinity; }
+  function fechaCorta(iso) {
+    if (!iso) return "";
+    var d = new Date(iso.length === 10 ? iso + "T12:00:00" : iso);
+    return isNaN(d) ? "" : d.toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" });
+  }
+
+  // ---------- Estado y sugerencia de seguimiento ----------
+  function analizar(p) {
+    var s = p.stats, manual = p.estado_manual;
+    if (manual === "ganado") return { clave: "ganado", etiqueta: "Ganado", tono: "ok", sug: "Pasa el contrato en FOTOSTUDIO.", prio: 0 };
+    if (manual === "perdido") return { clave: "perdido", etiqueta: "Perdido", tono: "off", sug: "", prio: 0 };
+    var hoy = new Date().toISOString().slice(0, 10);
+    var tocaHoy = p.seguimiento_fecha && p.seguimiento_fecha <= hoy;
+    if (s.reservo) return { clave: "reservo", etiqueta: "Agendó videollamada", tono: "hot", sug: "Prepara la reunión y revisa su plan de interés.", prio: 100 };
+    if (s.reservar_clics > 0) {
+      var h = horasDesde(s.ultimo_reservar);
+      return { clave: "clic", etiqueta: "Clic en reservar", tono: "hot", prio: 90,
+        sug: h >= 24 ? "Dio clic en reservar y no agendó. Escríbele hoy." : "Dio clic en reservar hace poco. Espera hasta mañana." };
+    }
+    if (s.whatsapp_clics > 0) return { clave: "wa", etiqueta: "Fue a WhatsApp", tono: "hot", sug: "Revisa tu WhatsApp: puede haberte escrito.", prio: 85 };
+    if (s.vistas > 0) {
+      var d = horasDesde(s.ultima_vista) / 24;
+      var planes = Object.keys(s.planes_vistos || {}).length;
+      var detalle = planes ? " Miró " + planes + (planes === 1 ? " plan." : " planes.") : "";
+      return { clave: "abrio", etiqueta: "Abrió el enlace", tono: "", prio: tocaHoy ? 80 : (d >= 1 ? 70 : 40),
+        sug: (d >= 1 ? "Abrió " + hace(s.ultima_vista) + " y no avanzó. Hora de dar seguimiento." : "Abrió hace poco. Espera un día antes de escribirle.") + detalle };
+    }
+    var dd = horasDesde(p.creado) / 24;
+    return { clave: "sin", etiqueta: "Sin abrir", tono: "off", prio: tocaHoy ? 75 : (dd >= 2 ? 60 : 20),
+      sug: dd >= 2 ? "Aún no abre el enlace. Reenvíalo por otro canal." : "Enlace recién enviado." };
+  }
+
+  function planTop(s) {
+    var best = null, n = 0;
+    Object.keys(s.planes_vistos || {}).forEach(function (k) { if (s.planes_vistos[k] > n) { n = s.planes_vistos[k]; best = k; } });
+    return best ? best.charAt(0).toUpperCase() + best.slice(1) : "";
+  }
+
+  // ---------- Lista ----------
+  function visibles() {
+    return datos.filter(function (p) {
+      var a = analizar(p);
+      if (filtro === "archivados") return p.archivado;
+      if (p.archivado) return false;
+      if (filtro === "activos") return a.clave !== "ganado" && a.clave !== "perdido";
+      if (filtro === "calientes") return a.tono === "hot";
+      if (filtro === "sin") return a.clave === "sin";
+      if (filtro === "cerrados") return a.clave === "ganado" || a.clave === "perdido";
+      return true;
+    }).sort(function (x, y) { return analizar(y).prio - analizar(x).prio || (y.creado || "").localeCompare(x.creado || ""); });
+  }
+
+  function pintarFiltros() {
+    var f = [["activos", "Activos"], ["calientes", "Calientes"], ["sin", "Sin abrir"], ["cerrados", "Cerrados"], ["archivados", "Archivados"]];
+    $("filtros").innerHTML = f.map(function (x) { return '<button data-f="' + x[0] + '" class="' + (filtro === x[0] ? "on" : "") + '">' + x[1] + "</button>"; }).join("");
+    $("filtros").querySelectorAll("button").forEach(function (b) {
+      b.onclick = function () { filtro = b.getAttribute("data-f"); pintar(); };
+    });
+  }
+
+  function pintar() {
+    var act = datos.filter(function (p) { return !p.archivado; });
+    $("stats").innerHTML = [
+      [act.length, "Prospectos"],
+      [act.filter(function (p) { return p.stats.vistas > 0; }).length, "Abrieron"],
+      [act.filter(function (p) { return p.stats.reservar_clics > 0 || p.stats.reservo; }).length, "Clic en reservar"],
+      [act.filter(function (p) { return p.stats.reservo; }).length, "Agendaron"]
+    ].map(function (x) { return '<div class="sg-stat"><b>' + x[0] + "</b><span>" + x[1] + "</span></div>"; }).join("");
+    pintarFiltros();
+
+    var v = visibles();
+    if (!v.length) { $("lista").innerHTML = '<div class="sg-vacio">No hay prospectos en esta vista.</div>'; return; }
+    $("lista").innerHTML = v.map(function (p) {
+      var a = analizar(p), s = p.stats, top = planTop(s);
+      var seg = p.seguimiento_fecha ? " · seguimiento " + fechaCorta(p.seguimiento_fecha) : "";
+      return '<div class="sg-fila' + (a.tono === "hot" ? " caliente" : "") + '" data-c="' + esc(p.code) + '">' +
+        '<div><div class="sg-nombre">' + esc(p.nombre) + '</div><div class="sg-sub">' + (p.fecha_boda ? "Boda " + fechaCorta(p.fecha_boda) + " · " : "") + "Tarifa " + esc(p.tarifa) + seg + "</div></div>" +
+        '<div><span class="sg-estado ' + a.tono + '">' + esc(a.etiqueta) + '</span><div class="sg-sub" style="margin-top:6px;">' +
+          (s.vistas ? s.vistas + (s.vistas === 1 ? " vista" : " vistas") + " · " + hace(s.ultima_vista) + (top ? " · " + esc(top) : "") : "Creado " + hace(p.creado)) + "</div></div>" +
+        '<div class="sg-sug">' + esc(a.sug) + "</div>" +
+        '<div class="sg-acciones"><button class="btn btn-sm btn-ghost" data-copiar="' + esc(p.code) + '">Copiar enlace</button></div></div>';
+    }).join("");
+    $("lista").querySelectorAll(".sg-fila").forEach(function (el) {
+      el.onclick = function (e) {
+        var cp = e.target.closest("[data-copiar]");
+        if (cp) { e.stopPropagation(); copiar(enlaceDe(cp.getAttribute("data-copiar")), "Enlace copiado"); return; }
+        abrirDetalle(el.getAttribute("data-c"));
+      };
+    });
+  }
+
+  function enlaceDe(code) { var p = datos.filter(function (x) { return x.code === code; })[0]; return p ? p.enlace : ""; }
+  function copiar(texto, aviso) {
+    var ok = function () { toast(aviso || "Copiado"); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texto).then(ok, function () { toast("No se pudo copiar"); });
+    else { var t = document.createElement("textarea"); t.value = texto; document.body.appendChild(t); t.select(); try { document.execCommand("copy"); ok(); } catch (e) { toast("No se pudo copiar"); } t.remove(); }
+  }
+  function mensajeDe(p) {
+    return "Hola " + p.nombre + ", soy Matu de MatuFilms. Aquí están nuestros planes para tu boda, con todo lo que incluyen y los valores:\n\n" + p.enlace + "\n\nRevísalos con calma y, si quieres avanzar, desde ahí mismo puedes agendar una videollamada conmigo.";
+  }
+
+  // ---------- Detalle ----------
+  var NOMBRES_EVENTO = { vista: "Abrió el enlace", plan_visto: "Miró el plan", reservar: "Clic en reservar", whatsapp: "Clic en WhatsApp", reservo: "Agendó la videollamada" };
+  function abrirDetalle(code) {
+    var p = datos.filter(function (x) { return x.code === code; })[0];
+    if (!p) return;
+    var a = analizar(p), s = p.stats;
+    var hist = (p.eventos || []).slice().reverse().slice(0, 40).map(function (e) {
+      var plan = e.plan ? " " + e.plan.charAt(0).toUpperCase() + e.plan.slice(1) : "";
+      return "<li><b>" + esc(NOMBRES_EVENTO[e.tipo] || e.tipo) + esc(plan) + "</b> · " + hace(e.t) + "</li>";
+    }).join("") || "<li>Aún no hay actividad.</li>";
+    var mins = Math.round((s.segundos_total || 0) / 60);
+    $("detalle").innerHTML =
+      '<button class="sg-cerrar" data-cerrar aria-label="Cerrar">×</button>' +
+      '<span class="sg-estado ' + a.tono + '">' + esc(a.etiqueta) + "</span>" +
+      '<h2 style="margin-top:12px;">' + esc(p.nombre) + "</h2>" +
+      '<div class="sg-sub">' + (p.fecha_boda ? "Boda " + fechaCorta(p.fecha_boda) + " · " : "") + "Tarifa " + esc(p.tarifa) + (p.contacto ? " · " + esc(p.contacto) : "") + "</div>" +
+      (a.sug ? '<p class="sg-sug" style="margin-top:14px;">' + esc(a.sug) + "</p>" : "") +
+      '<div class="sg-enlace"><input readonly value="' + esc(p.enlace) + '"><button class="btn btn-sm" id="dCopiar">Copiar</button></div>' +
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;"><button class="btn btn-sm btn-ghost" id="dMsg">Copiar mensaje</button><a class="btn btn-sm btn-ghost" href="' + esc(p.enlace) + '?nt=1" target="_blank" rel="noopener">Ver como prospecto</a></div>' +
+      '<label>Actividad</label><div class="sg-sub" style="margin-bottom:6px;">' + s.vistas + " vistas · " + s.reservar_clics + " clics en reservar · " + s.whatsapp_clics + " en WhatsApp" + (mins ? " · " + mins + " min en pantalla" : "") + "</div>" +
+      '<ul class="sg-hist">' + hist + "</ul>" +
+      '<div class="sg-2"><div class="campo"><label for="dEstado">Estado</label><select id="dEstado">' +
+        ["", "contactado", "ganado", "perdido"].map(function (v) { return '<option value="' + v + '"' + ((p.estado_manual || "") === v ? " selected" : "") + ">" + (v ? v.charAt(0).toUpperCase() + v.slice(1) : "Automático") + "</option>"; }).join("") +
+      '</select></div><div class="campo"><label for="dSeg">Próximo seguimiento</label><input id="dSeg" type="date" value="' + esc(p.seguimiento_fecha || "") + '"></div></div>' +
+      '<div class="sg-2"><div class="campo"><label for="dTarifa">Tarifa</label><select id="dTarifa"><option value="A"' + (p.tarifa === "A" ? " selected" : "") + '>Tarifa A</option><option value="B"' + (p.tarifa === "B" ? " selected" : "") + '>Tarifa B</option></select></div>' +
+      '<div class="campo"><label for="dFecha">Fecha de la boda</label><input id="dFecha" type="date" value="' + esc(p.fecha_boda || "") + '"></div></div>' +
+      '<div class="campo"><label for="dContacto">WhatsApp o correo</label><input id="dContacto" maxlength="120" value="' + esc(p.contacto) + '"></div>' +
+      '<div class="campo"><label for="dNotas">Notas</label><textarea id="dNotas" maxlength="1000">' + esc(p.notas) + "</textarea></div>" +
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn" id="dGuardar">Guardar</button><button class="btn btn-ghost" id="dArchivar">' + (p.archivado ? "Restaurar" : "Archivar") + "</button></div>" +
+      '<div class="error" id="dError"></div>';
+    $("velDetalle").classList.add("on");
+    $("dCopiar").onclick = function () { copiar(p.enlace, "Enlace copiado"); };
+    $("dMsg").onclick = function () { copiar(mensajeDe(p), "Mensaje copiado"); };
+    $("dGuardar").onclick = function () {
+      guardar(p.code, {
+        estado_manual: $("dEstado").value || null, seguimiento_fecha: $("dSeg").value || null,
+        tarifa: $("dTarifa").value, fecha_boda: $("dFecha").value || null,
+        contacto: $("dContacto").value, notas: $("dNotas").value
+      }, "Guardado");
+    };
+    $("dArchivar").onclick = function () { guardar(p.code, { archivado: !p.archivado }, p.archivado ? "Restaurado" : "Archivado"); };
+  }
+
+  function guardar(code, cambios, aviso) {
+    api("PATCH", "?c=" + encodeURIComponent(code), cambios).then(function (r) {
+      datos = datos.map(function (x) { return x.code === code ? r.prospecto : x; });
+      $("velDetalle").classList.remove("on");
+      pintar(); toast(aviso);
+    }).catch(function (e) { var el = $("dError"); if (el) el.textContent = e.message; });
+  }
+
+  // ---------- Nuevo ----------
+  function abrirNuevo() {
+    $("formNuevo").reset(); $("formNuevo").hidden = false; $("nResultado").hidden = true; $("nError").textContent = "";
+    $("velNuevo").classList.add("on"); $("nNombre").focus();
+  }
+  $("btnNuevo").onclick = abrirNuevo;
+  $("nOtro").onclick = abrirNuevo;
+  $("formNuevo").onsubmit = function (e) {
+    e.preventDefault();
+    api("POST", "", {
+      nombre: $("nNombre").value, tarifa: $("nTarifa").value, fecha_boda: $("nFecha").value || null,
+      contacto: $("nContacto").value, notas: $("nNotas").value
+    }).then(function (r) {
+      datos.unshift(r.prospecto); pintar();
+      $("nEnlace").value = r.prospecto.enlace; $("nMensaje").value = mensajeDe(r.prospecto);
+      $("formNuevo").hidden = true; $("nResultado").hidden = false;
+    }).catch(function (err) { $("nError").textContent = err.message; });
+  };
+  $("nCopiar").onclick = function () { copiar($("nEnlace").value, "Enlace copiado"); };
+  $("nCopiarMsg").onclick = function () { copiar($("nMensaje").value, "Mensaje copiado"); };
+
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("[data-cerrar]") || e.target.classList.contains("sg-vel")) {
+      document.querySelectorAll(".sg-vel").forEach(function (v) { v.classList.remove("on"); });
+    }
+  });
+
+  // ---------- Acceso ----------
+  function cargar() {
+    return api("GET").then(function (r) {
+      datos = r.prospectos; $("login").hidden = true; $("app").hidden = false; pintar();
+    });
+  }
+  $("loginForm").onsubmit = function (e) {
+    e.preventDefault();
+    token = $("tok").value;
+    cargar().then(function () {
+      try { sessionStorage.setItem("mf_admin", token); } catch (x) {}
+    }).catch(function (err) {
+      $("loginError").textContent = err.status === 401 ? "Clave incorrecta." : err.message;
+    });
+  };
+  if (token) cargar().catch(function () { try { sessionStorage.removeItem("mf_admin"); } catch (e) {} });
+})();
+</script>
+</body>
+</html>
