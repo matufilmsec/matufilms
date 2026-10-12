@@ -81,6 +81,16 @@
       ttq: "ClickButton",
       persistent: false
     },
+    pidio_planes: {
+      label: "Pidió los planes",
+      // Se registró en el formulario de /planes o /propuesta. Es un
+      // interesado real (dejó su nombre y WhatsApp), pero todavía no
+      // agenda: por eso es un evento propio y no "Lead".
+      meta: { name: "PidioPlanes", type: "custom" },
+      ga4: "pidio_planes",
+      ttq: "SubmitForm",
+      persistent: false
+    },
     quiero_agendar_sesion: {
       label: "Quiero agendar sesion",
       // Igual que interesado_reunion: un clic es solo INTENCION de

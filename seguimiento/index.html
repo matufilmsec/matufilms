@@ -92,7 +92,11 @@
     <div class="sg-top"><span class="eyebrow">Prospectos</span><h1>Seguimiento de planes</h1></div>
     <div class="sg-bar">
       <div class="sg-filtros" id="filtros"></div>
-      <button class="btn btn-sm" id="btnNuevo">+ Nuevo prospecto</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-sm btn-ghost" id="btnActualizar">Actualizar</button>
+        <button class="btn btn-sm btn-ghost" id="btnGenerales">Enlaces generales</button>
+        <button class="btn btn-sm" id="btnNuevo">+ Nuevo prospecto</button>
+      </div>
     </div>
     <div class="sg-stats" id="stats"></div>
     <div class="sg-lista" id="lista"></div>
@@ -124,6 +128,27 @@
         <button class="btn btn-sm" id="nCopiarMsg" type="button">Copiar mensaje</button>
         <button class="btn btn-sm btn-ghost" id="nOtro" type="button">Crear otro</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="sg-vel" id="velGenerales">
+  <div class="sg-cajon">
+    <button class="sg-cerrar" data-cerrar aria-label="Cerrar">×</button>
+    <span class="eyebrow">Sin hacerlo a mano</span>
+    <h2>Enlaces generales</h2>
+    <p class="sg-sub" style="margin-top:8px;">Envía el mismo enlace a cualquiera. Cada persona deja su nombre y WhatsApp, y aparece aquí sola con su enlace personal para que veas qué hace.</p>
+    <div style="margin-top:22px;">
+      <label>Tarifa A (base)</label>
+      <div class="sg-enlace" style="margin-top:0;"><input readonly value="https://matufilms.com/planes"><button class="btn btn-sm" data-gen="A">Copiar</button></div>
+      <label>Tarifa B (un nivel arriba)</label>
+      <div class="sg-enlace" style="margin-top:0;"><input readonly value="https://matufilms.com/propuesta"><button class="btn btn-sm" data-gen="B">Copiar</button></div>
+    </div>
+    <label style="margin-top:8px;">Mensaje listo (tarifa A)</label>
+    <textarea id="gMsgA" readonly style="min-height:110px;"></textarea>
+    <div style="display:flex;gap:10px;margin:12px 0 22px;flex-wrap:wrap;">
+      <button class="btn btn-sm" data-genmsg="A">Copiar mensaje A</button>
+      <button class="btn btn-sm btn-ghost" data-genmsg="B">Copiar mensaje B</button>
     </div>
   </div>
 </div>
@@ -185,12 +210,18 @@
     var hoy = new Date().toISOString().slice(0, 10);
     var tocaHoy = p.seguimiento_fecha && p.seguimiento_fecha <= hoy;
     if (s.reservo) return { clave: "reservo", etiqueta: "Agendó videollamada", tono: "hot", sug: "Prepara la reunión y revisa su plan de interés.", prio: 100 };
+    var solo = p.origen === "formulario";
     if (s.reservar_clics > 0) {
       var h = horasDesde(s.ultimo_reservar);
       return { clave: "clic", etiqueta: "Clic en reservar", tono: "hot", prio: 90,
         sug: h >= 24 ? "Dio clic en reservar y no agendó. Escríbele hoy." : "Dio clic en reservar hace poco. Espera hasta mañana." };
     }
     if (s.whatsapp_clics > 0) return { clave: "wa", etiqueta: "Fue a WhatsApp", tono: "hot", sug: "Revisa tu WhatsApp: puede haberte escrito.", prio: 85 };
+    if (solo && s.vistas === 0) return { clave: "registro", etiqueta: "Se registró", tono: "hot", prio: 88, sug: "Dejó sus datos pero no llegó a ver los planes. Escríbele hoy." };
+    if (solo && s.vistas > 0 && horasDesde(p.creado) < 48) {
+      var pv = Object.keys(s.planes_vistos || {}).length;
+      return { clave: "nuevo", etiqueta: "Nuevo contacto", tono: "hot", prio: 88, sug: "Se registró solo y ya vio sus planes" + (pv ? " (miró " + pv + ")" : "") + ". Escríbele hoy para presentarte." };
+    }
     if (s.vistas > 0) {
       var d = horasDesde(s.ultima_vista) / 24;
       var planes = Object.keys(s.planes_vistos || {}).length;
@@ -217,7 +248,7 @@
       if (p.archivado) return false;
       if (filtro === "activos") return a.clave !== "ganado" && a.clave !== "perdido";
       if (filtro === "calientes") return a.tono === "hot";
-      if (filtro === "sin") return a.clave === "sin";
+      if (filtro === "sin") return a.clave === "sin" || a.clave === "registro";
       if (filtro === "cerrados") return a.clave === "ganado" || a.clave === "perdido";
       return true;
     }).sort(function (x, y) { return analizar(y).prio - analizar(x).prio || (y.creado || "").localeCompare(x.creado || ""); });
@@ -247,7 +278,7 @@
       var a = analizar(p), s = p.stats, top = planTop(s);
       var seg = p.seguimiento_fecha ? " · seguimiento " + fechaCorta(p.seguimiento_fecha) : "";
       return '<div class="sg-fila' + (a.tono === "hot" ? " caliente" : "") + '" data-c="' + esc(p.code) + '">' +
-        '<div><div class="sg-nombre">' + esc(p.nombre) + '</div><div class="sg-sub">' + (p.fecha_boda ? "Boda " + fechaCorta(p.fecha_boda) + " · " : "") + "Tarifa " + esc(p.tarifa) + seg + "</div></div>" +
+        '<div><div class="sg-nombre">' + esc(p.nombre) + '</div><div class="sg-sub">' + (p.fecha_boda ? "Boda " + fechaCorta(p.fecha_boda) + " · " : "") + "Tarifa " + esc(p.tarifa) + (p.origen === "formulario" ? " · se registró solo" : "") + seg + "</div></div>" +
         '<div><span class="sg-estado ' + a.tono + '">' + esc(a.etiqueta) + '</span><div class="sg-sub" style="margin-top:6px;">' +
           (s.vistas ? s.vistas + (s.vistas === 1 ? " vista" : " vistas") + " · " + hace(s.ultima_vista) + (top ? " · " + esc(top) : "") : "Creado " + hace(p.creado)) + "</div></div>" +
         '<div class="sg-sug">' + esc(a.sug) + "</div>" +
@@ -273,7 +304,7 @@
   }
 
   // ---------- Detalle ----------
-  var NOMBRES_EVENTO = { vista: "Abrió el enlace", plan_visto: "Miró el plan", reservar: "Clic en reservar", whatsapp: "Clic en WhatsApp", reservo: "Agendó la videollamada" };
+  var NOMBRES_EVENTO = { vista: "Abrió el enlace", plan_visto: "Miró el plan", reservar: "Clic en reservar", whatsapp: "Clic en WhatsApp", registro: "Pidió los planes (formulario)", reservo: "Agendó la videollamada" };
   function abrirDetalle(code) {
     var p = datos.filter(function (x) { return x.code === code; })[0];
     if (!p) return;
@@ -349,6 +380,29 @@
       document.querySelectorAll(".sg-vel").forEach(function (v) { v.classList.remove("on"); });
     }
   });
+
+  // ---------- Enlaces generales ----------
+  var GEN = { A: "https://matufilms.com/planes", B: "https://matufilms.com/propuesta" };
+  function mensajeGeneral(t) {
+    return "Hola, soy Matu de MatuFilms. Gracias por escribirnos. Aquí puedes ver nuestros planes de boda, con todo lo que incluyen y los valores:\n\n" + GEN[t] + "\n\nSolo deja tu nombre y WhatsApp para verlos, y desde ahí mismo puedes agendar una videollamada conmigo.";
+  }
+  $("gMsgA").value = mensajeGeneral("A");
+  $("btnGenerales").onclick = function () { $("velGenerales").classList.add("on"); };
+  $("velGenerales").addEventListener("click", function (e) {
+    var a = e.target.closest("[data-gen]"), m = e.target.closest("[data-genmsg]");
+    if (a) copiar(GEN[a.getAttribute("data-gen")], "Enlace copiado");
+    if (m) copiar(mensajeGeneral(m.getAttribute("data-genmsg")), "Mensaje copiado");
+  });
+
+  // ---------- Actualizar ----------
+  function refrescar(aviso) {
+    return api("GET").then(function (r) { datos = r.prospectos; pintar(); if (aviso) toast("Actualizado"); }).catch(function () { if (aviso) toast("No se pudo actualizar"); });
+  }
+  $("btnActualizar").onclick = function () { refrescar(true); };
+  setInterval(function () {
+    var abierto = document.querySelector(".sg-vel.on");
+    if (document.visibilityState === "visible" && token && !$("app").hidden && !abierto) refrescar(false);
+  }, 30000);
 
   // ---------- Acceso ----------
   function cargar() {
