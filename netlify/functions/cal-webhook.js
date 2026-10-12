@@ -77,6 +77,18 @@ exports.handler = async function (event) {
     return { statusCode: 200, body: JSON.stringify({ skipped: true, reason: "Tipo de evento de Cal no reconocido: " + slug }) };
   }
 
+  // Si la reserva viene de un enlace personalizado (/p/...), el código del
+  // prospecto llega en metadata.prospecto: se marca como "reservó" en el panel.
+  const codigoProspecto = booking.metadata && booking.metadata.prospecto;
+  if (codigoProspecto) {
+    try {
+      const store = await import("./lib/store.mjs");
+      await store.registrarEvento(store.abrirStore(event), String(codigoProspecto), { tipo: "reservo" });
+    } catch (e) {
+      console.error("cal-webhook: no se pudo marcar al prospecto:", e);
+    }
+  }
+
   const bookingUid = booking.uid || booking.uuid;
   // event_id determinístico (no aleatorio) para que, si el Thank You
   // Page del navegador dispara el mismo evento con este mismo uid,

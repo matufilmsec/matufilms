@@ -36,6 +36,14 @@
   status = 301
   force = true
 
+# Enlaces personalizados de planes para prospectos: /p/CODIGO se sirve
+# desde /planes/ (la URL no cambia). Sin indexar ni guardar en caché.
+[[redirects]]
+  from = "/p/*"
+  to = "/planes/index.html"
+  status = 200
+  force = true
+
 # 404 personalizado
 [[redirects]]
   from = "/*"
@@ -53,3 +61,15 @@
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/p/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/seguimiento/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"

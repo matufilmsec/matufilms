@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /netlify/functions/
+Disallow: /p/
+Disallow: /planes/
+Disallow: /seguimiento/
 
 Sitemap: https://matufilms.com/sitemap.xml
