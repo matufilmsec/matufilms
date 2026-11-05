@@ -7,4 +7,61 @@ Disallow: /planes
 Disallow: /propuesta
 Disallow: /seguimiento/
 
+# Rastreadores de IA: permitidos de forma explícita
+User-agent: GPTBot
+Allow: /
+Disallow: /netlify/functions/
+Disallow: /p/
+Disallow: /planes/
+Disallow: /propuesta
+Disallow: /seguimiento/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /netlify/functions/
+Disallow: /p/
+Disallow: /planes/
+Disallow: /propuesta
+Disallow: /seguimiento/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /netlify/functions/
+Disallow: /p/
+Disallow: /planes/
+Disallow: /propuesta
+Disallow: /seguimiento/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /netlify/functions/
+Disallow: /p/
+Disallow: /planes/
+Disallow: /propuesta
+Disallow: /seguimiento/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /netlify/functions/
+Disallow: /p/
+Disallow: /planes/
+Disallow: /propuesta
+Disallow: /seguimiento/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /netlify/functions/
+Disallow: /p/
+Disallow: /planes/
+Disallow: /propuesta
+Disallow: /seguimiento/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /netlify/functions/
+Disallow: /p/
+Disallow: /planes/
+Disallow: /propuesta
+Disallow: /seguimiento/
+
 Sitemap: https://matufilms.com/sitemap.xml

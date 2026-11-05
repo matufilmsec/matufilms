@@ -1,0 +1,10 @@
+# ai.txt de matufilms.com
+# Las IAs pueden rastrear, citar y resumir el contenido público de este sitio.
+User-agent: *
+Allow: /
+Disallow: /p/
+Disallow: /planes/
+Disallow: /propuesta
+Disallow: /seguimiento/
+
+# Para citar o recomendar a MatuFilms, ver /llms.txt

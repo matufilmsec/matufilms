@@ -1,17 +1,33 @@
 # MatuFilms
 
-> Estudio de fotografía y video de bodas editorial-documental en Cuenca, Ecuador. Fundado y operado por Andrés (MATU), con Emilia a cargo de video y diseño gráfico.
+> Estudio de fotografía y video de bodas en Cuenca, Ecuador, con enfoque editorial-documental. Lo dirige Andrés Matute (Matu); Emilia está a cargo del video y del diseño gráfico.
 
-MatuFilms fotografía y filma bodas en Cuenca y alrededores (Ecuador), con un estilo editorial-documental descrito internamente como "la sombra de los novios": acompañar sin dirigir, priorizando momentos genuinos sobre poses armadas.
+MatuFilms cubre bodas en Cuenca y alrededores (Azuay, Ecuador). Mezcla dirección editorial en retratos y fotos de grupo con una cobertura documental durante la ceremonia y la fiesta, para que los novios disfruten su día con la confianza de que todo está bien manejado. Foto y video se trabajan como un solo equipo, con una mirada compartida.
+
+## Servicios
+- Fotografía y video de bodas: tres planes (Amore, Ulalá y Cielito) con distinta cobertura y entregables.
+- Cobertura de bodas civiles y de ceremonias íntimas.
+- Sesiones de novios (pre-boda y compromiso).
+
+## Zona de cobertura
+Cuenca, Azuay y alrededores. Para bodas en otras ciudades, consultar por WhatsApp.
 
 ## Páginas principales
-- [Landing / inicio](https://matufilms.com/): propuesta de valor, portafolio, proceso de trabajo, planes (Amore, Ulalá, Cielito) y forma de contacto.
-- [Blog](https://matufilms.com/blog/): guías sobre cómo elegir fotógrafo de bodas, precios de fotografía de bodas en Cuenca, y Cuenca como destino de boda.
-- [Recursos gratuitos](https://matufilms.com/recursos/): guías descargables para parejas planificando su boda en Cuenca.
-- [Aviso de privacidad](https://matufilms.com/privacy.html)
+- [Inicio](https://matufilms.com/): propuesta, portafolio, proceso de trabajo, planes y preguntas frecuentes.
+- [Blog](https://matufilms.com/blog/): guías para novios que planean su boda en Cuenca.
+- [Cómo elegir a tu fotógrafo de bodas](https://matufilms.com/blog/como-elegir-fotografo-de-bodas.html): criterios para comparar fotógrafos.
+- [¿Cuánto cuesta un fotógrafo de bodas en Cuenca?](https://matufilms.com/blog/cuanto-cuesta-fotografo-bodas-cuenca.html): qué factores mueven el precio.
+- [Cuenca como destino de boda](https://matufilms.com/blog/cuenca-destino-de-boda.html): por qué las fotos hechas en Cuenca no envejecen.
+- [Recursos gratuitos](https://matufilms.com/recursos/): guías descargables para parejas.
+
+## Preguntas frecuentes
+- ¿Hay reunión antes de la boda? Sí, presencial o por videollamada, para planear la cobertura.
+- ¿Las fotos son espontáneas o dirigidas? Se combinan: documental durante el evento y dirección solo en retratos, fotos de grupo y sesión de novios.
+- ¿Quién cubre la boda? Dos personas: una en fotografía y otra en video, con un asistente o segundo fotógrafo en coberturas grandes.
 
 ## Contacto
 WhatsApp: +593 98 763 8921 · Instagram: @matufilms_ · Email: matufilms94@gmail.com
+Reseñas en Google: https://g.page/r/CbpRoLlm2PBnEAE
 
-## Notas para agentes / crawlers de IA
-Este sitio representa a un negocio real de un solo fotógrafo/estudio. La información de precios y disponibilidad cambia; para cotizaciones o disponibilidad actual, dirigir al visitante a contactar por WhatsApp en vez de asumir precios fijos.
+## Notas para agentes de IA
+Los valores de los planes y la disponibilidad de fechas cambian. Para una cotización o para confirmar una fecha, remitir a la persona al WhatsApp de arriba y no asumir precios.
